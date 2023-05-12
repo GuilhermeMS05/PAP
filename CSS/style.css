@@ -1,0 +1,102 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #FF5F5F;
+}
+
+table.tabelas{
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px black;
+}
+
+table.tabelas tr{
+    height: 50px;
+}
+
+table.tabelas td{
+    padding: 10px;
+}
+
+table.tabelas td:nth-child(1){
+    width: 200px;
+}
+
+table.tabelas td:nth-child(3){
+    width: 50px;
+}
+
+table.tabelas td:nth-child(4){
+    width: 300px;
+}
+
+.imagem{
+    height: 115px;
+    width: 200px;
+}
+
+.IndexBox{
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px black;
+}
+
+.FuncForm{
+    background-color: white;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px black;
+}
+
+.FuncForm_submit{
+    background-color: white;
+    width: 200px;
+    border-radius: 5px;
+}
+
+.card-caixa {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 1);
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border: 2px solid #FF5F5F;
+    box-shadow: 0px 0px 10px #FF5F5F;
+}
+  
+.darken-bg {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: none;
+}
+  
+.show {
+    display: block;
+}
+  
+.card-caixa.show {
+    z-index: 1001;
+}
+
+.zoom{
+    transition: transform .2s;
+}
+
+.zoom:hover{
+    transform: scale(1.1);
+}

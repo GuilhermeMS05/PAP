@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand mb-0 h1" href="../HTML/index.php"> <img src="../Imagens/RestaurantName.svg"
+                        alt="logo_restaurante" width="100px" height="100px"> </a>
+                <li class='navbar'>
+                    <a class='nav-link active' aria-current='page' href='../Login/user_login.php'> <img
+                            src='../Imagens/imglogin.png' height='30px'> </a>
+
+            </div>
+        </nav>
+    </header><br>
+    <main>
+        <div class="Pratos mx-auto">
+            <h2 class="text-center py-1">Pratos</h2>
+            <div class="album py-5">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%"
+                                        fill="#eceeef" dy=".3em">Foto do Prato (user view)</text>
+                                </svg>
+
+                                <div class="card-body">
+                                    <h4 class="card-text text-center">Nome do Prato</h4>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                                onclick="mostrarCard()">Ver mais</button>
+                                        </div>
+                                            <div id='darken-bg' class='darken-bg'>
+                                                <div class='card d-none card-caixa' id='card-caixa' id='darken-bg'>
+                                                    <div class='card-body'>
+                                                        <div class="text-center">
+                                                            <img src="../Imagens/bifeespecial.jpeg" class="imgCardBox" width="350px"
+                                                            height="200px" alt="">
+                                                        </div> <br>
+                                                        <h5>Nome do Prato</h5>
+                                                        <p class="card-text">Descrição do Prato.</p>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="btn-group">
+                                                                <button type="button" class="btn btn-sm btn-outline-secondary">Adicionar ao Carrinho</button>
+                                                            </div>
+                                                            <small>Preço</small>
+                                                        </div><br><br>
+                                                        <div class="text-center">
+                                                            <button type='button' class='btn btn-secondary' id='fechar-card'>Fechar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <small style="font-size: 16px;">9,99€</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%"
+                                        fill="#eceeef" dy=".3em">Foto do Prato (admin view)</text>
+                                </svg>
+
+                                <div class="card-body">
+                                    <h4 class="card-text text-center">Nome do Prato</h4>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="mostrarCard()">Ver mais</button>
+                                            <div id='darken-bg' class='darken-bg'>
+                                                <div class='card d-none card-caixa' id='card-caixa' id='darken-bg'>
+                                                    <div class='card-body'>
+                                                        <div class="text-center">
+                                                            <img src="../Imagens/bifeespecial.jpeg" class="imgCardBox" width="350px"
+                                                            height="200px" alt="">
+                                                        </div> <br>
+                                                        <h5>Nome do Prato</h5>
+                                                        <p class="card-text">Descrição do Prato.</p>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="btn-group">
+                                                                <button type="button" class="btn btn-sm btn-outline-secondary">Adicionar ao Carrinho</button>
+                                                            </div>
+                                                            <small>Preço</small>
+                                                        </div><br><br>
+                                                        <div class="text-center">
+                                                            <button type='button' class='btn btn-secondary' id='fechar-card'>Fechar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="mostrarCard()">Editar</button>
+                                            
+                                        </div>
+                                        <small style="font-size: 16px;">9,99€</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%"
+                                        fill="#eceeef" dy=".3em">Thumbnail</text>
+                                </svg>
+
+                                <div class="card-body">
+                                    <p class="card-text">This is a wider card with supporting text below as a natural
+                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        </div>
+                                        <small class="text-muted">9 mins</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        something here
+    </footer>
+
+    <script>
+        function mostrarCard() {
+            var card = document.getElementById("card-caixa");
+            var botao = document.getElementById("botao");
+            var darkenBg = document.getElementById("darken-bg");
+            card.classList.toggle("d-none");
+            card.classList.toggle("show");
+            darkenBg.classList.toggle("show");
+        }
+        document.getElementById("fechar-card").addEventListener("click", function () {
+            var card = document.getElementById("card-caixa");
+            card.classList.add("d-none");
+            document.getElementById("darken-bg").classList.remove("show");
+        });
+    </script>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>

@@ -1,9 +1,8 @@
-Baixar Git Kraken p/ commits;
 Tratar da formas de pagamento (radio button http://devfuria.com.br/php/manipulando-radio-button-com-php/);
 Footer;
 botar online pelo server da azure (vestacp (cpanel free));
 Cards box com as entradas/pratos/sobremesas/bebidas;
-Adicionar função de adicionar novas entradas/pratos/sobremesas.
+Adicionar função de adicionar novas entradas/pratos/sobremesas/bebidas.
 Fazer Carrinho de compras;
 Página com pedidos;
 Registro de users + logar com google;

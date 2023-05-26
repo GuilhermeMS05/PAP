@@ -101,25 +101,53 @@ require_once "../Includes/login.php";
 </style>
 
 <?php
-
-if (isset($_POST["FP1"])) {
-    $valor1 = 1;
-} else {
-    $valor = 0;
-}
-
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 var_dump($dados);
 
-//if (isset($_POST['FP1']) && isset($_POST['FP2']) && isset($_POST['FP3'])) {
-    //Obter o valor enviado pelo usuário
-    //$pag1 = $_POST['FP1'];
-    //$pag2 = $_POST['FP2'];
-    //$pag3 = $_POST['FP3'];
+// Verifica se o formulário foi enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["opcao1"]) && is_array($_POST["opcao1"])) {
+        $opcoes = $_POST["opcao1"];
+        // Obtém os valores selecionados dos checkboxes
+        if (isset($_POST["opcao1"])) {
+            $opcoes = $_POST["opcao1"];
 
-    //Inserir o valor na tabela
-    //$sql = "UPDATE pagamento SET fp1='$pag1', fp2='$pag2', fp3='$pag3' WHERE id=1";
-    //mysqli_query($bd, $sql);
+            // Limpa a tabela antes de inserir novos valores
+            $sqlLimpar = "TRUNCATE TABLE pagamento";
+            $bd->query($sqlLimpar);
+
+            // Insere os valores no banco de dados
+            foreach ($opcoes as $opcao) {
+                $sql = "INSERT INTO pagamento (opcao) VALUES ('$opcao')";
+                if ($bd->query($sql) !== TRUE) {
+                    echo "Erro ao salvar no banco de dados: " . $bd->error;
+                }
+            }
+
+            echo "Valores salvos no banco de dados com sucesso.";
+        }
+    }
+}
+// Recupera os valores do banco de dados
+$sql = "SELECT opcao FROM pagamento";
+$result = $bd->query($sql);
+
+$opcoesSelecionadas = array();
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $opcoesSelecionadas[] = $row["opcao"];
+    }
+}
+
+//if (isset($_POST['FP1']) && isset($_POST['FP2']) && isset($_POST['FP3'])) {
+//Obter o valor enviado pelo usuário
+//$pag1 = $_POST['FP1'];
+//$pag2 = $_POST['FP2'];
+//$pag3 = $_POST['FP3'];
+
+//Inserir o valor na tabela
+//$sql = "UPDATE pagamento SET fp1='$pag1', fp2='$pag2', fp3='$pag3' WHERE id=1";
+//mysqli_query($bd, $sql);
 //}
 
 //Obter o último valor inserido na tabela
@@ -146,23 +174,15 @@ var_dump($dados);
                         <h3 class="text-center">Formas de Pagamento</h3>
                         <div class="p-1">
                             Pagamento X
-                            <?php 
-                            if ($valor1 = 1){
-                                echo ("<label class='switch'> <input type='checkbox' name='FP1' value='$valor1' checked> <span class='slider round'></span>
-                            </label>");
-                            } else{
-                                echo ("<label class='switch'> <input type='checkbox' name='FP1' value='$valor1'> <span class='slider round'></span>
-                            </label>");
-                            }
-                            
-                            ?>
+                            <label class='switch'> <input type='checkbox' name='opcao1' value="opcao1" <?php if (in_array("opcao1", $opcoesSelecionadas)) echo "checked"; ?>> <span class='slider round'></span>
+                            </label>
                             <br><br>
                             Pagamento Y
-                            <label class="switch"> <input type="checkbox" name="FP2" value=""> <span class="slider round"></span>
+                            <label class="switch"> <input type="checkbox" name="opcao2" value="opcao2" <?php if (in_array("opcao2", $opcoesSelecionadas)) echo "checked"; ?>> <span class="slider round"></span>
                             </label>
                             <br><br>
                             Pagamento Z
-                            <label class="switch"> <input type="checkbox" name="FP3" value=""> <span class="slider round"></span>
+                            <label class="switch"> <input type="checkbox" name="opcao3" value="opcao3" <?php if (in_array("opcao3", $opcoesSelecionadas)) echo "checked"; ?>> <span class="slider round"></span>
                             </label>
                             <br><br>
                             <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">

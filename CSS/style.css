@@ -100,3 +100,13 @@ table.tabelas td:nth-child(4){
 .zoom:hover{
     transform: scale(1.1);
 }
+
+.cardImg{
+    width: 100% !important;
+    height: 255px !important;
+    border-radius: 10px 10px 0 0 !important;
+}
+.card{
+    border-radius: 10px !important;
+    height: 100%;
+}

@@ -13,4 +13,5 @@ mysqli_real_connect($bd, $servername, $username, $password, $database, 3306, NUL
 if (!$bd) {
   die("Conexão falhou: " . mysqli_connect_error());
 }
+$bd->set_charset('utf8');
 ?>

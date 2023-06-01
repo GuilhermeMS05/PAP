@@ -9,4 +9,4 @@ Footer (terminar);
 Gráficos;
 (bd azure pass 7nZ4@3MB
 guilhermepap.mysql.database.azure.com
-login namecheap msm do github)commit test
+login namecheap msm do github)

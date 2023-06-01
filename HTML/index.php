@@ -158,7 +158,6 @@ require_once "../Includes/pratos.php";
                                         // $img = images($reg->img); 
                                     }
                                 }
-                                //echo "<tr><td>$reg->nome<td>$reg->descricao<td>$reg->preco<td><img class='imagem' src='$img'>
                                 ?>
                                 <?php while ($item = $procura->fetch_object()) : ?>
                                     <?php $img = images($item->img); ?>
@@ -166,33 +165,14 @@ require_once "../Includes/pratos.php";
                                         <div class="card shadow-sm">
                                             <img src="<?php echo $img ?>" class="img-fluid cardImg">
                                             <div class="card-body">
-                                                <h4 class="card-text text-center"><?php echo $item->nome ?></h4>
+                                                <p class="card-text"><?php echo $item->nome ?></p>
+                                               <p> <?php echo $item->descricao ?></p>
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="btn-group">
-                                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="mostrarCard()">Ver mais</button>
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                                     </div>
-                                                    <div id='darken-bg' class='darken-bg'>
-                                                        <div class='card d-none card-caixa' id='card-caixa' id='darken-bg'>
-                                                            <div class='card-body'>
-                                                                <div class="text-center">
-                                                                    <img src="../Imagens/bifeespecial.jpeg" class="imgCardBox" width="350px" height="200px" alt="">
-                                                                </div> <br>
-                                                                <h5>Nome do Prato</h5>
-                                                                <p class="card-text">Descrição do Prato.</p>
-                                                                <div class="d-flex justify-content-between align-items-center">
-                                                                    <div class="btn-group">
-                                                                        <button type="button" class="btn btn-sm btn-outline-secondary">Adicionar
-                                                                            ao Carrinho</button>
-                                                                    </div>
-                                                                    <small>Preço</small>
-                                                                </div><br><br>
-                                                                <div class="text-center">
-                                                                    <button type='button' class='btn btn-secondary' id='fechar-card'>Fechar</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <small style="font-size: 16px;">9,99€</small>
+                                                    <small class="text-muted"><?php echo $item->preco ?></small>
                                                 </div>
                                             </div>
                                         </div>
@@ -203,9 +183,6 @@ require_once "../Includes/pratos.php";
                     </div>
                 </div>
             </div>
-        </div>
-        <div>
-
         </div>
 
 

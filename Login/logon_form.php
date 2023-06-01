@@ -8,7 +8,7 @@ require_once "../Includes/login.php";
 ?>
 
 <head>
-    <title>Login</title>
+    <title>Criar Conta</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,7 +35,7 @@ require_once "../Includes/login.php";
             background-color: #3b5998;
         }
 
-        input {
+        input{
             background-color: #FF5F5F;
         }
 
@@ -43,7 +43,6 @@ require_once "../Includes/login.php";
             color: #ff0000;
             text-decoration: none;
         }
-
         a:hover {
             color: #FF5F5F;
             text-decoration: none;
@@ -59,20 +58,32 @@ require_once "../Includes/login.php";
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                     <div class="card border-0 shadow rounded-3 my-5">
                         <div class="card-body p-4 p-sm-5">
-                            <h5 class="card-title text-center mb-5 fw-light fs-5">Entrar</h5>
-                            <form method="get" action="user_login.php">
+                            <h5 class="card-title text-center mb-5 fw-light fs-5">Criar conta</h5>
+                            <form method="post" action="user_logon.php">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInput" name="nome">
+                                    <label for="floatingInput">Nome Completo</label>
+                                </div>
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="floatingInput" name="user">
                                     <label for="floatingInput">Utilizador</label>
                                 </div>
                                 <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingInput" name="email">
+                                    <label for="floatingInput">Email</label>
+                                </div>
+                                <div class="form-floating mb-3">
                                     <input type="password" class="form-control" id="floatingPassword" name="password">
                                     <label for="floatingPassword">Password</label>
                                 </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="floatingPassword" name="password_r">
+                                    <label for="floatingPassword">Confirmar Password</label>
+                                </div>
                                 <div class="d-grid">
-                                    <input class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" value="Entrar"></input>
+                                    <input class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" value="Criar"></input>
                                 </div><br>
-                                <p>Ainda não tens uma conta? <a href="logon_form.php">Criar</a></p>
+                                <p align="center">Ou crie uma conta com o Google</p>
                                 <hr class="my-4">
                                 <div class="d-grid mb-2">
                                     <button class="btn btn-danger btn-google btn-login text-uppercase fw-bold" type="submit" style="text-align: center;">

@@ -32,7 +32,7 @@ require_once "../Includes/login.php";
       $s = $_GET['password'] ?? null;
 
       if (is_null($u) || is_null($s)) {
-        require "login_form.php";
+        require "../Login/login_form.php";
       } else {
         $q = "SELECT id_utilizador, nome_utilizador, nome_completo, senha, tipo_utilizador FROM utilizadores WHERE nome_utilizador = '$u' LIMIT 1";
         $procura = $bd->query($q);

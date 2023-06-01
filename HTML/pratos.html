@@ -46,128 +46,76 @@
         </nav>
     </header><br>
     <main>
-        <div class="Pratos mx-auto">
-            <h2 class="text-center py-1">Pratos</h2>
-            <div class="album py-5">
-                <div class="container">
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <title>Placeholder</title>
-                                    <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%"
-                                        fill="#eceeef" dy=".3em">Foto do Prato (user view)</text>
-                                </svg>
-
-                                <div class="card-body">
-                                    <h4 class="card-text text-center">Nome do Prato</h4>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"
-                                                onclick="mostrarCard()">Ver mais</button>
-                                        </div>
-                                            <div id='darken-bg' class='darken-bg'>
-                                                <div class='card d-none card-caixa' id='card-caixa' id='darken-bg'>
-                                                    <div class='card-body'>
-                                                        <div class="text-center">
-                                                            <img src="../Imagens/bifeespecial.jpeg" class="imgCardBox" width="350px"
-                                                            height="200px" alt="">
-                                                        </div> <br>
-                                                        <h5>Nome do Prato</h5>
-                                                        <p class="card-text">Descrição do Prato.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                            <div class="btn-group">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary">Adicionar ao Carrinho</button>
-                                                            </div>
-                                                            <small>Preço</small>
-                                                        </div><br><br>
-                                                        <div class="text-center">
-                                                            <button type='button' class='btn btn-secondary' id='fechar-card'>Fechar</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <small style="font-size: 16px;">9,99€</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <title>Placeholder</title>
-                                    <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%"
-                                        fill="#eceeef" dy=".3em">Foto do Prato (admin view)</text>
-                                </svg>
-
-                                <div class="card-body">
-                                    <h4 class="card-text text-center">Nome do Prato</h4>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="mostrarCard()">Ver mais</button>
-                                            <div id='darken-bg' class='darken-bg'>
-                                                <div class='card d-none card-caixa' id='card-caixa' id='darken-bg'>
-                                                    <div class='card-body'>
-                                                        <div class="text-center">
-                                                            <img src="../Imagens/bifeespecial.jpeg" class="imgCardBox" width="350px"
-                                                            height="200px" alt="">
-                                                        </div> <br>
-                                                        <h5>Nome do Prato</h5>
-                                                        <p class="card-text">Descrição do Prato.</p>
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                            <div class="btn-group">
-                                                                <button type="button" class="btn btn-sm btn-outline-secondary">Adicionar ao Carrinho</button>
-                                                            </div>
-                                                            <small>Preço</small>
-                                                        </div><br><br>
-                                                        <div class="text-center">
-                                                            <button type='button' class='btn btn-secondary' id='fechar-card'>Fechar</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="mostrarCard()">Editar</button>
-                                            
-                                        </div>
-                                        <small style="font-size: 16px;">9,99€</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <title>Placeholder</title>
-                                    <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%"
-                                        fill="#eceeef" dy=".3em">Thumbnail</text>
-                                </svg>
-
-                                <div class="card-body">
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                        lead-in to additional content. This content is a little bit longer.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                        </div>
-                                        <small class="text-muted">9 mins</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+        <!DOCTYPE html>
+<html>
+<head>
+  <title>Exemplo de Dropdown</title>
+  <style>
+    .info {
+      display: none; /* Esconde as informações por padrão */
+    }
+  </style>
+</head>
+<body>
+  <h1>Exemplo de Dropdown</h1>
+  
+  <select id="menu" onchange="mostrarInformacoes()">
+    <option value="">Selecione uma opção</option>
+    <option value="entradas">Entradas</option>
+    <option value="pratos">Pratos</option>
+    <option value="sobremesas">Sobremesas</option>
+  </select>
+  
+  <div id="informacoes">
+    <div id="entradas" class="info">
+      <h2>Entradas</h2>
+      <ul>
+        <li>Opção 1</li>
+        <li>Opção 2</li>
+        <li>Opção 3</li>
+      </ul>
+    </div>
+    
+    <div id="pratos" class="info">
+      <h2>Pratos</h2>
+      <ul>
+        <li>Opção 4</li>
+        <li>Opção 5</li>
+        <li>Opção 6</li>
+      </ul>
+    </div>
+    
+    <div id="sobremesas" class="info">
+      <h2>Sobremesas</h2>
+      <ul>
+        <li>Opção 7</li>
+        <li>Opção 8</li>
+        <li>Opção 9</li>
+      </ul>
+    </div>
+  </div>
+  
+  <script>
+    function mostrarInformacoes() {
+      var menu = document.getElementById("menu");
+      var informacoes = document.getElementById("informacoes");
+      
+      // Oculta todas as informações
+      var infos = informacoes.getElementsByClassName("info");
+      for (var i = 0; i < infos.length; i++) {
+        infos[i].style.display = "none";
+      }
+      
+      // Exibe a informação selecionada
+      var opcaoSelecionada = menu.value;
+      if (opcaoSelecionada !== "") {
+        var infoSelecionada = document.getElementById(opcaoSelecionada);
+        infoSelecionada.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
     <footer>
         something here
     </footer>

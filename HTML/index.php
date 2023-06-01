@@ -21,6 +21,17 @@ require_once "../Includes/pratos.php";
     <link rel="stylesheet" href="../CSS/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <style>
+        .info {
+            display: none;
+            /* Esconde as informações por padrão */
+        }
+
+        .desc_prato {
+            height: 150px;
+            max-height: 150;
+        }
+    </style>
 </head>
 
 <body>
@@ -142,7 +153,15 @@ require_once "../Includes/pratos.php";
         <div class="container-fluid p-5">
             <div class="row mx-auto IndexBox">
                 <div class="Pratos mx-auto">
-                    <h2 class="text-center py-1">Pratos</h2>
+                    <div style="text-align: right;">
+                        <select id="menu" onchange="mostrarInformacoes()">
+                            <option value="">Filtrar</option>
+                            <option value="entradas">Entradas</option>
+                            <option value="pratos">Pratos</option>
+                            <option value="sobremesas">Sobremesas</option>
+                        </select>
+                    </div>
+                    <h2 class="text-center py-1">Menu</h2>
                     <div class="album py-5">
                         <div class="container">
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -161,12 +180,46 @@ require_once "../Includes/pratos.php";
                                 ?>
                                 <?php while ($item = $procura->fetch_object()) : ?>
                                     <?php $img = images($item->img); ?>
-                                    <div class="col">
-                                        <div class="card shadow-sm">
+                                    <div class="col" id="informações">
+                                        <div class="card shadow-sm" id="pratos" class="info">
                                             <img src="<?php echo $img ?>" class="img-fluid cardImg">
                                             <div class="card-body">
-                                                <p class="card-text"><?php echo $item->nome ?></p>
-                                               <p> <?php echo $item->descricao ?></p>
+                                                <p class="card-text" style="height: 75px;"><?php echo $item->nome ?></p>
+                                                <p class="desc_prato"> <?php echo $item->descricao ?></p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                    </div>
+                                                    <small class="text-muted"><?php echo $item->preco ?></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endwhile; ?>
+                            </div>
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                                <?php
+                                $procura = $bd->query("SELECT * FROM entradas");
+                                if (!$procura) {
+                                    echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+                                } else {
+                                    if ($procura->num_rows == 0) {
+                                        echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                                    } else {
+                                        // $reg = $procura->fetch_object();
+                                        // $img = images($reg->img); 
+                                    }
+                                }
+                                ?>
+                                <?php while ($item = $procura->fetch_object()) : ?>
+                                    <?php $img = images($item->img); ?>
+                                    <div class="col" id="informações">
+                                        <div class="card shadow-sm" id="pratos" class="info">
+                                            <img src="<?php echo $img ?>" class="img-fluid cardImg">
+                                            <div class="card-body">
+                                                <p class="card-text" style="height: 75px;"><?php echo $item->nome ?></p>
+                                                <p class="desc_prato"> <?php echo $item->descricao ?></p>
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="btn-group">
                                                         <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
@@ -194,6 +247,22 @@ require_once "../Includes/pratos.php";
         include_once "../Navbar-Footer/footer.php";
         ?>
     </footer>
+
+    <script>
+        function mostrarCard() {
+            var card = document.getElementById("card-caixa");
+            var botao = document.getElementById("botao");
+            var darkenBg = document.getElementById("darken-bg");
+            card.classList.toggle("d-none");
+            card.classList.toggle("show");
+            darkenBg.classList.toggle("show");
+        }
+        document.getElementById("fechar-card").addEventListener("click", function () {
+            var card = document.getElementById("card-caixa");
+            card.classList.add("d-none");
+            document.getElementById("darken-bg").classList.remove("show");
+        });
+    </script>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
     </script>

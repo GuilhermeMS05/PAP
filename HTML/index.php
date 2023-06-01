@@ -124,113 +124,172 @@ require_once "../Includes/pratos.php";
                 </div>
             </nav>
         </div>
-        <!--
-    <div class="container">
-      <div class="row">
-        <div class="row-md-12">
-          <table class="tabelas">
-            <?php
-            //$procura = $bd->query("SELECT * FROM pratos");
-            //if (!$procura) {
-            //echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-            //} else {
-            //if ($procura->num_rows == 0) {
-            //echo "<tr><td>Nenhum registo encontrado!</td></tr>";
-            //} else {
-            //while ($reg = $procura->fetch_object()) {
-            //$img = images($reg->img);
-            //echo "<tr><td>$reg->nome<td>$reg->descricao<td>$reg->preco<td><img class='imagem' src='$img'>";
-            //}
-            //}
-            //}
-            ?>
 
-          </table>
-        </div>
-      </div>
-    </div> -->
+
 
         <div class="container-fluid p-5">
             <div class="row mx-auto IndexBox">
                 <div class="Pratos mx-auto">
+                    <h2 class="text-center py-1">Cardapio</h2>
                     <div style="text-align: right;">
                         <select id="menu" onchange="mostrarInformacoes()">
                             <option value="">Filtrar</option>
                             <option value="entradas">Entradas</option>
                             <option value="pratos">Pratos</option>
                             <option value="sobremesas">Sobremesas</option>
+                            <option value="bebidas">Bebidas</option>
                         </select>
                     </div>
-                    <h2 class="text-center py-1">Menu</h2>
                     <div class="album py-5">
-                        <div class="container">
-                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                                <?php
-                                $procura = $bd->query("SELECT * FROM pratos");
-                                if (!$procura) {
-                                    echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-                                } else {
-                                    if ($procura->num_rows == 0) {
-                                        echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                        <div class="container" id="informacoes">
+                            <div id="pratos" class="info">
+                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                                    <?php
+                                    $procura = $bd->query("SELECT * FROM pratos");
+                                    if (!$procura) {
+                                        echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
                                     } else {
-                                        // $reg = $procura->fetch_object();
-                                        // $img = images($reg->img); 
+                                        if ($procura->num_rows == 0) {
+                                            echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                                        } else {
+                                            // $reg = $procura->fetch_object();
+                                            // $img = images($reg->img); 
+                                        }
                                     }
-                                }
-                                ?>
-                                <?php while ($item = $procura->fetch_object()) : ?>
-                                    <?php $img = images($item->img); ?>
-                                    <div class="col" id="informações">
-                                        <div class="card shadow-sm" id="pratos" class="info">
-                                            <img src="<?php echo $img ?>" class="img-fluid cardImg">
-                                            <div class="card-body">
-                                                <p class="card-text" style="height: 75px;"><?php echo $item->nome ?></p>
-                                                <p class="desc_prato"> <?php echo $item->descricao ?></p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    ?>
+
+                                    <?php while ($item = $procura->fetch_object()) : ?>
+                                        <?php $img = images($item->img); ?>
+
+                                        <div class="col">
+                                            <div class="card shadow-sm">
+                                                <img src="<?php echo $img ?>" class="img-fluid cardImg">
+                                                <div class="card-body">
+                                                    <p class="card-text" style="height: 75px;"><?php echo $item->nome ?></p>
+                                                    <p class="desc_prato"> <?php echo $item->descricao ?></p>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                        </div>
+                                                        <small class="text-muted"><?php echo $item->preco ?></small>
                                                     </div>
-                                                    <small class="text-muted"><?php echo $item->preco ?></small>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php endwhile; ?>
-                            </div>
-                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                                <?php
-                                $procura = $bd->query("SELECT * FROM entradas");
-                                if (!$procura) {
-                                    echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-                                } else {
-                                    if ($procura->num_rows == 0) {
-                                        echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                                    <?php endwhile; ?>
+                                </div>
+                            </div><br>
+                            <div id="entradas" class="info">
+                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                                    <?php
+                                    $procura = $bd->query("SELECT * FROM entradas");
+                                    if (!$procura) {
+                                        echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
                                     } else {
-                                        // $reg = $procura->fetch_object();
-                                        // $img = images($reg->img); 
+                                        if ($procura->num_rows == 0) {
+                                            echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                                        } else {
+                                            // $reg = $procura->fetch_object();
+                                            // $img = images($reg->img); 
+                                        }
                                     }
-                                }
-                                ?>
-                                <?php while ($item = $procura->fetch_object()) : ?>
-                                    <?php $img = images($item->img); ?>
-                                    <div class="col" id="informações">
-                                        <div class="card shadow-sm" id="pratos" class="info">
-                                            <img src="<?php echo $img ?>" class="img-fluid cardImg">
-                                            <div class="card-body">
-                                                <p class="card-text" style="height: 75px;"><?php echo $item->nome ?></p>
-                                                <p class="desc_prato"> <?php echo $item->descricao ?></p>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    ?>
+
+                                    <?php while ($item = $procura->fetch_object()) : ?>
+                                        <?php $img = images($item->img); ?>
+
+                                        <div class="col">
+                                            <div class="card shadow-sm">
+                                                <img src="<?php echo $img ?>" class="img-fluid cardImg">
+                                                <div class="card-body">
+                                                    <p class="card-text" style="height: 75px;"><?php echo $item->nome ?></p>
+                                                    <p class="desc_prato"> <?php echo $item->descricao ?></p>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                        </div>
+                                                        <small class="text-muted"><?php echo $item->preco ?></small>
                                                     </div>
-                                                    <small class="text-muted"><?php echo $item->preco ?></small>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php endwhile; ?>
+                                    <?php endwhile; ?>
+                                </div>
+                            </div><br>
+                            <div id="sobremesas" class="info">
+                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                                    <?php
+                                    $procura = $bd->query("SELECT * FROM sobremesas");
+                                    if (!$procura) {
+                                        echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+                                    } else {
+                                        if ($procura->num_rows == 0) {
+                                            echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                                        } else {
+                                            // $reg = $procura->fetch_object();
+                                            // $img = images($reg->img); 
+                                        }
+                                    }
+                                    ?>
+
+                                    <?php while ($item = $procura->fetch_object()) : ?>
+                                        <?php $img = images($item->img); ?>
+                                        <div class="col">
+                                            <div class="card shadow-sm">
+                                                <img src="<?php echo $img ?>" class="img-fluid cardImg">
+                                                <div class="card-body">
+                                                    <p class="card-text" style="height: 75px;"><?php echo $item->nome ?></p>
+                                                    <p class="desc_prato"> <?php echo $item->descricao ?></p>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                        </div>
+                                                        <small class="text-muted"><?php echo $item->preco ?></small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endwhile; ?>
+                                </div>
+                            </div><br>
+                            <div id="bebidas" class="info">
+                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                                    <?php
+                                    $procura = $bd->query("SELECT * FROM bebidas");
+                                    if (!$procura) {
+                                        echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+                                    } else {
+                                        if ($procura->num_rows == 0) {
+                                            echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                                        } else {
+                                            // $reg = $procura->fetch_object();
+                                            // $img = images($reg->img); 
+                                        }
+                                    }
+                                    ?>
+
+                                    <?php while ($item = $procura->fetch_object()) : ?>
+                                        <?php $img = images($item->img); ?>
+                                        <div class="col">
+                                            <div class="card shadow-sm">
+                                                <img src="<?php echo $img ?>" class="img-fluid cardImg">
+                                                <div class="card-body">
+                                                    <p class="card-text" style="height: 75px;"><?php echo $item->nome ?></p>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                        </div>
+                                                        <small class="text-muted"><?php echo $item->preco ?></small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endwhile; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -240,7 +299,31 @@ require_once "../Includes/pratos.php";
 
 
 
+        <script>
+            function mostrarInformacoes() {
+                var menu = document.getElementById("menu");
+                var informacoes = document.getElementById("informacoes");
 
+                // Oculta todas as informações
+                var infos = informacoes.getElementsByClassName("info");
+                for (var i = 0; i < infos.length; i++) {
+                    infos[i].style.display = "none";
+                }
+
+                // Exibe a informação selecionada ou todas as informações se "Selecione uma opção" for selecionado
+                var opcaoSelecionada = menu.value;
+                if (opcaoSelecionada === "") {
+                    // Exibe todas as informações
+                    for (var j = 0; j < infos.length; j++) {
+                        infos[j].style.display = "block";
+                    }
+                } else {
+                    var infoSelecionada = document.getElementById(opcaoSelecionada);
+                    infoSelecionada.style.display = "block";
+                }
+            }
+            mostrarInformacoes();
+        </script>
     </main>
     <footer>
         <?php
@@ -248,21 +331,6 @@ require_once "../Includes/pratos.php";
         ?>
     </footer>
 
-    <script>
-        function mostrarCard() {
-            var card = document.getElementById("card-caixa");
-            var botao = document.getElementById("botao");
-            var darkenBg = document.getElementById("darken-bg");
-            card.classList.toggle("d-none");
-            card.classList.toggle("show");
-            darkenBg.classList.toggle("show");
-        }
-        document.getElementById("fechar-card").addEventListener("click", function () {
-            var card = document.getElementById("card-caixa");
-            card.classList.add("d-none");
-            document.getElementById("darken-bg").classList.remove("show");
-        });
-    </script>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
     </script>

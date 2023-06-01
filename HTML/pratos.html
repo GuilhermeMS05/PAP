@@ -2,62 +2,65 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="../CSS/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-
-</head>
-
-<body>
-    <header>
-        <nav class="navbar navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand mb-0 h1" href="../HTML/index.php"> <img src="../Imagens/RestaurantName.svg"
-                        alt="logo_restaurante" width="100px" height="100px"> </a>
-                <li class='navbar'>
-                    <a class='nav-link active' aria-current='page' href='../Login/user_login.php'> <img
-                            src='../Imagens/imglogin.png' height='30px'> </a>
-
-            </div>
-        </nav>
-    </header><br>
-    <main>
-        <!DOCTYPE html>
-<html>
-<head>
-  <title>Exemplo de Dropdown</title>
   <style>
-    .info {
-      display: none; /* Esconde as informações por padrão */
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
     }
   </style>
+
 </head>
+
 <body>
-  <h1>Exemplo de Dropdown</h1>
+  <header>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand mb-0 h1" href="../HTML/index.php"> <img src="../Imagens/RestaurantName.svg"
+            alt="logo_restaurante" width="100px" height="100px"> </a>
+        <li class='navbar'>
+          <a class='nav-link active' aria-current='page' href='../Login/user_login.php'> <img
+              src='../Imagens/imglogin.png' height='30px'> </a>
+
+      </div>
+    </nav>
+  </header><br>
+  <main>
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+      <title>Exemplo de Dropdown</title>
+      <style>
+        .info {
+          display: none;
+          /* Esconde as informações por padrão */
+        }
+      </style>
+    </head>
+
+    <body>
+      <h1>Exemplo de Dropdown</h1>
   
   <select id="menu" onchange="mostrarInformacoes()">
     <option value="">Selecione uma opção</option>
@@ -67,31 +70,34 @@
   </select>
   
   <div id="informacoes">
-    <div id="entradas" class="info">
-      <h2>Entradas</h2>
-      <ul>
-        <li>Opção 1</li>
-        <li>Opção 2</li>
-        <li>Opção 3</li>
-      </ul>
-    </div>
-    
-    <div id="pratos" class="info">
-      <h2>Pratos</h2>
-      <ul>
-        <li>Opção 4</li>
-        <li>Opção 5</li>
-        <li>Opção 6</li>
-      </ul>
-    </div>
-    
-    <div id="sobremesas" class="info">
-      <h2>Sobremesas</h2>
-      <ul>
-        <li>Opção 7</li>
-        <li>Opção 8</li>
-        <li>Opção 9</li>
-      </ul>
+    <div id="todas" class="info">
+      <h2>Todas as opções</h2>
+      <div id="entradas">
+        <h3>Entradas</h3>
+        <ul>
+          <li>Opção 1</li>
+          <li>Opção 2</li>
+          <li>Opção 3</li>
+        </ul>
+      </div>
+      
+      <div id="pratos">
+        <h3>Pratos</h3>
+        <ul>
+          <li>Opção 1</li>
+          <li>Opção 2</li>
+          <li>Opção 3</li>
+        </ul>
+      </div>
+      
+      <div id="sobremesas">
+        <h3>Sobremesas</h3>
+        <ul>
+          <li>Opção 1</li>
+          <li>Opção 2</li>
+          <li>Opção 3</li>
+        </ul>
+      </div>
     </div>
   </div>
   
@@ -106,44 +112,51 @@
         infos[i].style.display = "none";
       }
       
-      // Exibe a informação selecionada
+      // Exibe a informação selecionada ou todas as informações se "Selecione uma opção" for selecionado
       var opcaoSelecionada = menu.value;
-      if (opcaoSelecionada !== "") {
+      if (opcaoSelecionada === "") {
+        var todasOpcoes = document.getElementById("todas");
+        todasOpcoes.style.display = "block";
+      } else {
         var infoSelecionada = document.getElementById(opcaoSelecionada);
         infoSelecionada.style.display = "block";
       }
     }
+    
+    // Por padrão, exibir todas as opções
+    mostrarInformacoes();
   </script>
-</body>
-</html>
+    </body>
+
+    </html>
     <footer>
-        something here
+      something here
     </footer>
 
     <script>
-        function mostrarCard() {
-            var card = document.getElementById("card-caixa");
-            var botao = document.getElementById("botao");
-            var darkenBg = document.getElementById("darken-bg");
-            card.classList.toggle("d-none");
-            card.classList.toggle("show");
-            darkenBg.classList.toggle("show");
-        }
-        document.getElementById("fechar-card").addEventListener("click", function () {
-            var card = document.getElementById("card-caixa");
-            card.classList.add("d-none");
-            document.getElementById("darken-bg").classList.remove("show");
-        });
+      function mostrarCard() {
+        var card = document.getElementById("card-caixa");
+        var botao = document.getElementById("botao");
+        var darkenBg = document.getElementById("darken-bg");
+        card.classList.toggle("d-none");
+        card.classList.toggle("show");
+        darkenBg.classList.toggle("show");
+      }
+      document.getElementById("fechar-card").addEventListener("click", function () {
+        var card = document.getElementById("card-caixa");
+        card.classList.add("d-none");
+        document.getElementById("darken-bg").classList.remove("show");
+      });
     </script>
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-        </script>
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+      </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-        </script>
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+      </script>
 </body>
 
 </html>

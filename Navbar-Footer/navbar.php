@@ -13,7 +13,8 @@
                   echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
                   echo "<li><a class='dropdown-item' href='../HTML/funcionamento.php'>Horário de Funcionamento</a></li>";
                   echo "<li><a class='dropdown-item' href='../HTML/T_Espera.php'>Tempo de Espera</a></li>";
-                  echo "<li><a class='dropdown-item' href='#'>Something else here</a></li>";
+                  echo "<li><a class='dropdown-item' href='../HTML/Formas_Pagamento.php'>Formas de Pagamento</a></li>";
+                  echo "<li><a class='dropdown-item' href='../HTML/cardapio.php'>Editar Cardápio</a></li>";
                   echo "</ul></li>";
                   echo "<li class='navbar'> <a class='nav-link active' aria-current='page' href='#'>Pedidos</a></li>";
                   echo "<li class='navbar'> <a class='nav-link active' aria-current='page' href='#'>Relatórios</a></li>";

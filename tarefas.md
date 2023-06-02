@@ -1,5 +1,5 @@
 Registro de users + logar com google;
-Adicionar função de adicionar novas entradas/pratos/sobremesas/bebidas.
+Adicionar função de adicionar/editar/remover entradas/pratos/sobremesas/bebidas.
 Fazer Carrinho de compras;
 Página com pedidos;
 Tratar da formas de pagamento;

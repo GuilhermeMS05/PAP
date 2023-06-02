@@ -169,8 +169,7 @@ require_once "../Includes/pratos.php";
                                                     <p class="desc_prato"> <?php echo $item->descricao ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Adicionar ao Carrinho</button>
                                                         </div>
                                                         <small class="text-muted"><?php echo $item->preco ?></small>
                                                     </div>
@@ -207,8 +206,7 @@ require_once "../Includes/pratos.php";
                                                     <p class="desc_prato"> <?php echo $item->descricao ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Adicionar ao Carrinho</button>
                                                         </div>
                                                         <small class="text-muted"><?php echo $item->preco ?></small>
                                                     </div>
@@ -244,8 +242,7 @@ require_once "../Includes/pratos.php";
                                                     <p class="desc_prato"> <?php echo $item->descricao ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Adicionar ao Carrinho</button>
                                                         </div>
                                                         <small class="text-muted"><?php echo $item->preco ?></small>
                                                     </div>
@@ -280,8 +277,7 @@ require_once "../Includes/pratos.php";
                                                     <p class="card-text" style="height: 75px;"><?php echo $item->nome ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Adicionar ao Carrinho</button>
                                                         </div>
                                                         <small class="text-muted"><?php echo $item->preco ?></small>
                                                     </div>

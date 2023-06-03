@@ -130,7 +130,7 @@ require_once "../Includes/pratos.php";
         <div class="container-fluid p-5">
             <div class="row mx-auto IndexBox">
                 <div class="Pratos mx-auto">
-                    <h2 class="text-center py-1">Cardapio</h2>
+                    <h2 class="text-center py-1">Cardápio</h2>
                     <div style="text-align: right;">
                         <select id="menu" onchange="mostrarInformacoes()">
                             <option value="">Filtrar</option>
@@ -299,7 +299,7 @@ require_once "../Includes/pratos.php";
             function mostrarInformacoes() {
                 var menu = document.getElementById("menu");
                 var informacoes = document.getElementById("informacoes");
-
+                console.log(informacoes);
                 // Oculta todas as informações
                 var infos = informacoes.getElementsByClassName("info");
                 for (var i = 0; i < infos.length; i++) {

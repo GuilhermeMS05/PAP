@@ -128,196 +128,155 @@ require_once "../Includes/login.php";
         <div class="container p-5">
             <div class="row">
                 <div class="justify-content-center align-items-center text-center FuncForm">
-                    <h2 class="text-center py-1">Editar Cardápio</h2>
+                    <h1>Editar Cardápio</h1>
+                    <div style="text-align: left;">
+                        <button class="FuncForm_submit zoom border border-2 border-danger w-auto" type="button"><a style="text-decoration: none; color:black;" href="../HTML/addproduto.php">Adicionar Produto</a></button>
+                    </div>
                     <div style="text-align: right;">
-                        <select id="menu" onchange="mostrarInformacoes()">
-                            <option value="">Filtrar</option>
-                            <option value="entradas">Entradas</option>
-                            <option value="pratos">Pratos</option>
-                            <option value="sobremesas">Sobremesas</option>
-                            <option value="bebidas">Bebidas</option>
+                        <select class="filter-dropdown" onchange="filterProducts(this.value)">
+                            <option value="all">Todas as Opções</option>
+                            <option value="entrada">Entradas</option>
+                            <option value="prato">Pratos</option>
+                            <option value="sobremesa">Sobremesas</option>
+                            <option value="bebida">Bebidas</option>
                         </select>
                     </div>
-                    <table class="table">
-                        <div class="album py-5">
-                            <div class="container" id="informacoes">
-                                <div id="pratos" class="info">
-                                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Imagem</th>
-                                                <th scope="col" colspan="3">Nome</th>
-                                                <th scope="col" colspan="2">Operação</th>
-                                            </tr>
-                                        </thead>
-                                        <?php
-                                        $procura = $bd->query("SELECT * FROM pratos");
-                                        if (!$procura) {
-                                            echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-                                        } else {
-                                            if ($procura->num_rows == 0) {
-                                                echo "<tr><td>Nenhum registo encontrado!</td></tr>";
-                                            } else {
-                                                // $reg = $procura->fetch_object();
-                                                // $img = images($reg->img); 
-                                            }
-                                        }
-                                        ?>
-                                        <tbody>
-                                            <?php while ($item = $procura->fetch_object()) : ?>
-                                                <?php $img = images($item->img); ?>
-                                                <tr>
-                                                    <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
-                                                    <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
-                                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=pratos"><span class="material-symbols-outlined">edit</span></td></a>
-                                                    <td style="vertical-align: middle;"><span class="material-symbols-outlined">delete</span></td>
-                                                </tr>
-                                            <?php endwhile; ?>
-                                        </tbody>
 
-                                    </div>
-                                </div>
-                                <div id="entradas" class="info">
-                                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                                        <?php
-                                        $procura = $bd->query("SELECT * FROM entradas");
-                                        if (!$procura) {
-                                            echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-                                        } else {
-                                            if ($procura->num_rows == 0) {
-                                                echo "<tr><td>Nenhum registo encontrado!</td></tr>";
-                                            } else {
-                                                // $reg = $procura->fetch_object();
-                                                // $img = images($reg->img); 
-                                            }
-                                        }
-                                        ?>
-                                        <tbody>
-                                            <?php while ($item = $procura->fetch_object()) : ?>
-                                                <?php $img = images($item->img); ?>
-                                                <tr>
-                                                    <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
-                                                    <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
-                                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=entradas"><span class="material-symbols-outlined">edit</span></td></a>
-                                                    <td style="vertical-align: middle;"><span class="material-symbols-outlined">delete</span></td>
-                                                </tr>
-                                            <?php endwhile; ?>
-                                        </tbody>
+                    <table class="table" id="product-table">
+                        <div class="container album py-3">
+                            <tr>
+                                <th scope="col" colspan="1">Imagem</th>
+                                <th scope="col" colspan="3">Nome</th>
+                                <th scope="col" colspan="2">Operação</th>
+                            </tr>
+                            <?php
+                            $procura = $bd->query("SELECT * FROM entradas");
+                            if (!$procura) {
+                                echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+                            } else {
+                                if ($procura->num_rows == 0) {
+                                    echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                                } else {
+                                    // $reg = $procura->fetch_object();
+                                    // $img = images($reg->img); 
+                                }
+                            }
+                            ?>
+                            <?php while ($item = $procura->fetch_object()) : ?>
+                                <?php $img = images($item->img); ?>
+                                <tr class="entrada">
+                                    <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
+                                    <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
+                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=entradas"><span class="material-symbols-outlined">edit</span></a></td>
+                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=entradas"><span class="material-symbols-outlined">delete</span></a></td>
 
-                                    </div>
-                                </div>
-                                <div id="sobremesas" class="info">
-                                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                                        <?php
-                                        $procura = $bd->query("SELECT * FROM sobremesas");
-                                        if (!$procura) {
-                                            echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-                                        } else {
-                                            if ($procura->num_rows == 0) {
-                                                echo "<tr><td>Nenhum registo encontrado!</td></tr>";
-                                            } else {
-                                                // $reg = $procura->fetch_object();
-                                                // $img = images($reg->img); 
-                                            }
-                                        }
-                                        ?>
-                                        <tbody>
-                                            <?php while ($item = $procura->fetch_object()) : ?>
-                                                <?php $img = images($item->img); ?>
-                                                <tr>
-                                                    <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
-                                                    <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
-                                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=sobremesas"><span class="material-symbols-outlined">edit</span></td></a>
-                                                    <td style="vertical-align: middle;"><span class="material-symbols-outlined">delete</span></td>
-                                                </tr>
-                                            <?php endwhile; ?>
-                                        </tbody>
+                                </tr>
+                            <?php endwhile; ?>
+                            <?php
+                            $procura = $bd->query("SELECT * FROM pratos");
+                            if (!$procura) {
+                                echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+                            } else {
+                                if ($procura->num_rows == 0) {
+                                    echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                                } else {
+                                    // $reg = $procura->fetch_object();
+                                    // $img = images($reg->img); 
+                                }
+                            }
+                            ?>
+                            <?php while ($item = $procura->fetch_object()) : ?>
+                                <?php $img = images($item->img); ?>
+                                <tr class="prato">
+                                    <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
+                                    <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
+                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=pratos"><span class="material-symbols-outlined">edit</span></a></td>
+                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=pratos"><span class="material-symbols-outlined">delete</span></a></td>
 
-                                    </div>
-                                </div>
-                                <div id="bebidas" class="info">
-                                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                                        <?php
-                                        $procura = $bd->query("SELECT * FROM bebidas");
-                                        if (!$procura) {
-                                            echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-                                        } else {
-                                            if ($procura->num_rows == 0) {
-                                                echo "<tr><td>Nenhum registo encontrado!</td></tr>";
-                                            } else {
-                                                // $reg = $procura->fetch_object();
-                                                // $img = images($reg->img); 
-                                            }
-                                        }
-                                        ?>
-                                        <tbody>
-                                            <?php while ($item = $procura->fetch_object()) : ?>
-                                                <?php $img = images($item->img); ?>
-                                                <tr>
-                                                    <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
-                                                    <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
-                                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=bebidas"><span class="material-symbols-outlined">edit</span></td></a>
-                                                    <td style="vertical-align: middle;"><span class="material-symbols-outlined">delete</span></td>
-                                                </tr>
-                                            <?php endwhile; ?>
-                                        </tbody>
+                                </tr>
+                            <?php endwhile; ?>
+                            <?php
+                            $procura = $bd->query("SELECT * FROM sobremesas");
+                            if (!$procura) {
+                                echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+                            } else {
+                                if ($procura->num_rows == 0) {
+                                    echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                                } else {
+                                    // $reg = $procura->fetch_object();
+                                    // $img = images($reg->img); 
+                                }
+                            }
+                            ?>
+                            <?php while ($item = $procura->fetch_object()) : ?>
+                                <?php $img = images($item->img); ?>
+                                <tr class="sobremesa">
+                                    <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
+                                    <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
+                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=sobremesas"><span class="material-symbols-outlined">edit</span></a></td>
+                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=sobremesas"><span class="material-symbols-outlined">delete</span></a></td>
 
-                                    </div>
-                                </div>
-                            </div>
+                                </tr>
+                            <?php endwhile; ?>
+                            <?php
+                            $procura = $bd->query("SELECT * FROM bebidas");
+                            if (!$procura) {
+                                echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+                            } else {
+                                if ($procura->num_rows == 0) {
+                                    echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                                } else {
+                                    // $reg = $procura->fetch_object();
+                                    // $img = images($reg->img); 
+                                }
+                            }
+                            ?>
+                            <?php while ($item = $procura->fetch_object()) : ?>
+                                <?php $img = images($item->img); ?>
+                                <tr class="bebida">
+                                    <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
+                                    <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
+                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=bebidas"><span class="material-symbols-outlined">edit</span></a></td>
+                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=bebidas"><span class="material-symbols-outlined">delete</span></a></td>
+
+                                </tr>
+                            <?php endwhile; ?>
                         </div>
                     </table>
                 </div>
             </div>
-
         </div>
-        
-    </main>
-    <footer>
-        <?php
-        include_once "../Navbar-Footer/footer.php";
-        ?>
-    </footer>
-
-
-    <script>
-        function mostrarInformacoes() {
-            var menu = document.getElementById("menu");
-            var informacoes = document.getElementById("informacoes");
-
-            // Oculta todas as informações
-            var infos = informacoes.getElementsByClassName("info");
-            for (var i = 0; i < infos.length; i++) {
-                infos[i].style.display = "none";
-            }
-
-            // Exibe a informação selecionada ou todas as informações se "Selecione uma opção" for selecionado
-            var opcaoSelecionada = menu.value;
-            if (opcaoSelecionada === "") {
-                // Exibe todas as informações
-                for (var j = 0; j < infos.length; j++) {
-                    infos[j].style.display = "block";
+        <script>
+            function filterProducts(type) {
+                var rows = document.getElementById("product-table").getElementsByTagName("tr");
+                for (var i = 1; i < rows.length; i++) {
+                    var row = rows[i];
+                    if (type === "all" || row.classList.contains(type)) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
                 }
-            } else {
-                var infoSelecionada = document.getElementById(opcaoSelecionada);
-                infoSelecionada.style.display = "block";
             }
-        }
-        mostrarInformacoes();
-    </script>
-    <!-- JQuery Library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        </script>
+        <footer>
+            <?php
+            include_once "../Navbar-Footer/footer.php";
+            ?>
+        </footer>
+        <!-- JQuery Library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-    </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
 
-    <script>
+        <script>
 
-    </script>
+        </script>
 
 </body>
 

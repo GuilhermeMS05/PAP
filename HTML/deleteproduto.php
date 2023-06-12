@@ -121,16 +121,15 @@ if (!$procura) {
     }
 }
 
-if (isset($_POST['nome']) && isset($_POST['descricao']) && isset($_POST['preco']) && isset($_POST['imagem'])) {
-    // Obter o valor enviado pelo usuário
-    $P_nome = $_POST['nome'];
-    $P_desc = $_POST['descricao'];
-    $P_preco = $_POST['preco'];
-    $P_img = $_POST['imagem'];
+if (isset($_POST['deletar'])) {
+    // Deletar o valor na tabela
+    $sql = "DELETE FROM $tabela WHERE id = '$id'";
 
-    // Inserir o valor na tabela
-    $sql = "UPDATE $tabela SET nome='$P_nome', descricao='$P_desc', preco='$P_preco', img='$P_img' WHERE id=$id";
-    mysqli_query($bd, $sql);
+    if ($bd->query($sql) === TRUE) {
+        echo "Produto deletado com sucesso!";
+    } else {
+        echo "Erro ao deletar produto: ";
+    }
 }
 ?>
 
@@ -145,43 +144,14 @@ if (isset($_POST['nome']) && isset($_POST['descricao']) && isset($_POST['preco']
             <div class="row">
                 <div class="justify-content-center align-items-center text-center FuncForm">
                     <h2 class="text-center py-1"><?php $item = $procura->fetch_object();
-                                                    echo "Editar $item->nome"; ?></h2>
+                                                    echo "Deletar $item->nome"; ?></h2>
 
                     <div class="album py-5">
                         <div class="container">
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-12 g-3 d-flex justify-content-center">
                                 <form action="" method="POST">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Nome do Produto</label>
-                                        <input type="text" name="nome" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo $item->nome ?>">
-                                    </div><br>
-                                    <div class="form-group">
-                                        <label for="exampleFormControlTextarea1">Descrição do Produto</label>
-                                        <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3"><?php echo $item->descricao ?></textarea>
-                                    </div><br>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Preço do Produto</label>
-                                        <input type="text" class="form-control" name="preco" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo $item->preco ?>">
-                                    </div><br>
-                                    <div class="form-group">
-                                        <label for="exampleFormControlFile1">Imagem do Produto</label>
-                                        <div class="file-upload">
-                                            <div class="image-upload-wrap zoom">
-                                                <input class="file-upload-input" name="imagem" type='file' onchange="readURL(this);" accept="image/*" />
-                                                <div class="drag-text">
-                                                    <h3>Adicionar Imagem</h3>
-                                                </div>
-                                            </div>
-                                            <div class="file-upload-content">
-                                                <img class="file-upload-image" src="../Imagens/<?php $img = images($item->img);
-                                                                                                echo $item->img ?>" alt="your image" />
-                                                <div class="image-title-wrap">
-                                                    <button type="button" onclick="removeUpload()" class="FuncForm_submit zoom border border-2 border-danger remove-image">Remover Imagem</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><br>
-                                    <button type="submit" class="btn FuncForm_submit zoom border border-2 border-danger">Enviar</button>
+                                    <h5>Tem certeza que deseja deletar <?php echo $item->nome ?> do cardápio?</h5><br>
+                                    <input type="submit" name="deletar" class="btn FuncForm_submit zoom border border-2 border-danger" id="exampleInputEmail1" aria-describedby="emailHelp" value="Deletar"><br>
                                 </form>
                             </div>
                         </div>

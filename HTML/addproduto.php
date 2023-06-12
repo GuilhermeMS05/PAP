@@ -107,29 +107,16 @@ require_once "../Includes/login.php";
 </style>
 
 <?php
-$id = $_GET['id'];
-$tabela = $_GET['cat'];
-$procura = $bd->query("SELECT * FROM $tabela WHERE id=$id");
-if (!$procura) {
-    echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-} else {
-    if ($procura->num_rows == 0) {
-        echo "<tr><td>Nenhum registo encontrado!</td></tr>";
-    } else {
-        // $reg = $procura->fetch_object();
-        // $img = images($reg->img); 
-    }
-}
-
-if (isset($_POST['nome']) && isset($_POST['descricao']) && isset($_POST['preco']) && isset($_POST['imagem'])) {
+if (isset($_POST['categoria']) && isset($_POST['nome']) && isset($_POST['descricao']) && isset($_POST['preco']) && isset($_POST['imagem'])) {
     // Obter o valor enviado pelo usuário
+    $P_cat = $_POST['categoria'];
     $P_nome = $_POST['nome'];
     $P_desc = $_POST['descricao'];
     $P_preco = $_POST['preco'];
     $P_img = $_POST['imagem'];
 
     // Inserir o valor na tabela
-    $sql = "UPDATE $tabela SET nome='$P_nome', descricao='$P_desc', preco='$P_preco', img='$P_img' WHERE id=$id";
+    $sql = "INSERT INTO $P_cat (nome, descricao, preco, img) VALUES ('$P_nome', '$P_desc', '$P_preco', '$P_img')";
     mysqli_query($bd, $sql);
 }
 ?>
@@ -144,24 +131,31 @@ if (isset($_POST['nome']) && isset($_POST['descricao']) && isset($_POST['preco']
         <div class="container p-5">
             <div class="row">
                 <div class="justify-content-center align-items-center text-center FuncForm">
-                    <h2 class="text-center py-1"><?php $item = $procura->fetch_object();
-                                                    echo "Editar $item->nome"; ?></h2>
-
+                    <h2 class="text-center py-1">Adicionar Produto</h2>
                     <div class="album py-5">
                         <div class="container">
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-12 g-3 d-flex justify-content-center">
                                 <form action="" method="POST">
                                     <div class="form-group">
+                                        <label for="categoria">Categoria do Produto:</label><br>
+                                        <select id="categoria" name="categoria">
+                                            <option value="entradas">entradas</option>
+                                            <option value="pratos">pratos</option>
+                                            <option value="sobremesas">sobremesas</option>
+                                            <option value="bebidas">bebidas</option>
+                                        </select>
+                                    </div><br>
+                                    <div class="form-group">
                                         <label for="exampleInputEmail1">Nome do Produto</label>
-                                        <input type="text" name="nome" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo $item->nome ?>">
+                                        <input type="text" name="nome" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="">
                                     </div><br>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1">Descrição do Produto</label>
-                                        <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3"><?php echo $item->descricao ?></textarea>
+                                        <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
                                     </div><br>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Preço do Produto</label>
-                                        <input type="text" class="form-control" name="preco" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo $item->preco ?>">
+                                        <input type="text" class="form-control" name="preco" id="exampleInputEmail1" aria-describedby="emailHelp" value="">
                                     </div><br>
                                     <div class="form-group">
                                         <label for="exampleFormControlFile1">Imagem do Produto</label>
@@ -173,8 +167,7 @@ if (isset($_POST['nome']) && isset($_POST['descricao']) && isset($_POST['preco']
                                                 </div>
                                             </div>
                                             <div class="file-upload-content">
-                                                <img class="file-upload-image" src="../Imagens/<?php $img = images($item->img);
-                                                                                                echo $item->img ?>" alt="your image" />
+                                                <img class="file-upload-image" src="" alt="your image" />
                                                 <div class="image-title-wrap">
                                                     <button type="button" onclick="removeUpload()" class="FuncForm_submit zoom border border-2 border-danger remove-image">Remover Imagem</button>
                                                 </div>

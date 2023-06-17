@@ -25,14 +25,8 @@
         ?>
         <h1>Logout</h1>
         <?php
-            echo "<div class='card'>";
-            echo "<div class='card-body'>";
             echo logout();
-            echo msg_sucesso('O utlizador foi desconectado com sucesso!');
-            echo "Voltar para a página principal<br>";
-            echo "<a href='../HTML/index.php'><span class='material-icons'>arrow_back</span></a>";
-            echo "</div>";
-            echo "</div>";
+            header('location: ../HTML/index.php');
         ?>
 
       </div>

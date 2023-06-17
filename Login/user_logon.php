@@ -18,6 +18,7 @@ require_once "../Includes/login.php";
 
     <link rel="stylesheet" href="../CSS/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
 </head>
 
@@ -50,13 +51,31 @@ require_once "../Includes/login.php";
                     $query = "INSERT INTO utilizadores (nome_utilizador, senha, nome_completo, email , tipo_utilizador) VALUES ('$user', '$pass_hash', '$nome', '$email' ,'user')";
                     $result = mysqli_query($bd, $query);
                     // exibir mensagem informando que o utilizador foi criado
-                    echo "Utilizador criado";
+                    echo "<div class='card'>";
+                    echo "<div class='card-body'>";
+                    echo msg_sucesso('Utilizador criado!');
+                    echo "Entre na sua conta<br>";
+                    echo "<a href='../Login/user_login.php'><span class='material-icons'>arrow_back</span></a>";
+                    echo "</div>";
+                    echo "</div>";
                     return;
                 } else {
-                    echo "Utilizador já existe";
+                    echo "<div class='card'>";
+                    echo "<div class='card-body'>";
+                    echo msg_erro('Utilizador já existe!');
+                    echo "Entre na sua conta<br>";
+                    echo "<a href='../Login/user_login.php'><span class='material-icons'>arrow_back</span></a>";
+                    echo "</div>";
+                    echo "</div>";
                 }
             } else {
-                echo "Erro";
+                echo "<div class='card'>";
+                echo "<div class='card-body'>";
+                echo msg_erro('As palavras-passe não coincidem!');
+                echo "Tente novamente<br>";
+                echo "<a href='../Login/logon_form.php'><span class='material-icons'>arrow_back</span></a>";
+                echo "</div>";
+                echo "</div>";
             }
             ?>
 

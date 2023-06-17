@@ -140,24 +140,37 @@ if (isset($_POST['deletar'])) {
         ?>
     </header>
     <main>
-        <div class="container p-5">
-            <div class="row">
-                <div class="justify-content-center align-items-center text-center FuncForm">
-                    <h2 class="text-center py-1"><?php $item = $procura->fetch_object();
-                                                    echo "Deletar $item->nome"; ?></h2>
+        <?php if (is_admin()) : ?>
+            <div class="container p-5">
+                <div class="row">
+                    <div class="justify-content-center align-items-center text-center FuncForm">
+                        <h2 class="text-center py-1"><?php $item = $procura->fetch_object();
+                                                        echo "Remover $item->nome"; ?></h2>
 
-                    <div class="album py-5">
-                        <div class="container">
-                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-12 g-3 d-flex justify-content-center">
-                                <form action="" method="POST">
-                                    <h5>Tem certeza que deseja deletar <?php echo $item->nome ?> do cardápio?</h5><br>
-                                    <input type="submit" name="deletar" class="btn FuncForm_submit zoom border border-2 border-danger" id="exampleInputEmail1" aria-describedby="emailHelp" value="Deletar"><br>
-                                </form>
+                        <div class="album py-5">
+                            <div class="container">
+                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-12 g-3 d-flex justify-content-center">
+                                    <form action="" method="POST">
+                                        <h5>Tem certeza que deseja remover <?php echo $item->nome ?> do cardápio?</h5><br>
+                                        <input type="submit" name="deletar" class="btn FuncForm_submit zoom border border-2 border-danger" id="exampleInputEmail1" aria-describedby="emailHelp" value="Deletar"><br>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
+            </div>
+        <?php else : ?>
+            <div class="container p-5">
+                <div class="row IndexBox">
+                    <h4><?php
+                        header('refresh:3;url=index.php');
+                        echo msg_erro('Esta página destina-se apenas a Administradores! A redirecionar-te para a página inicial.');
+                        ?></h4>
+                </div>
+            </div>
+        <?php endif; ?>
     </main>
     <footer>
         <?php
@@ -172,44 +185,6 @@ if (isset($_POST['deletar'])) {
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-    </script>
-
-    <script>
-        $('.image-upload-wrap').hide();
-        $('.file-upload-content').show();
-
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    $('.image-upload-wrap').hide();
-
-                    $('.file-upload-image').attr('src', e.target.result);
-                    $('.file-upload-content').show();
-
-                    $('.image-title').html(input.files[0].name);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-
-            } else {
-                removeUpload();
-            }
-        }
-
-        function removeUpload() {
-            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-            $('.file-upload-content').hide();
-            $('.image-upload-wrap').show();
-        }
-        $('.image-upload-wrap').bind('dragover', function() {
-            $('.image-upload-wrap').addClass('image-dropping');
-        });
-        $('.image-upload-wrap').bind('dragleave', function() {
-            $('.image-upload-wrap').removeClass('image-dropping');
-        });
     </script>
 
 </body>

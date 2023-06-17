@@ -125,158 +125,160 @@ require_once "../Includes/login.php";
         ?>
     </header>
     <main>
-        <div class="container p-5">
-            <div class="row">
-                <div class="justify-content-center align-items-center text-center FuncForm">
-                    <h1>Editar Cardápio</h1>
-                    <div style="text-align: left;">
-                        <button class="FuncForm_submit zoom border border-2 border-danger w-auto" type="button"><a style="text-decoration: none; color:black;" href="../HTML/addproduto.php">Adicionar Produto</a></button>
-                    </div>
-                    <div style="text-align: right;">
-                        <select class="filter-dropdown" onchange="filterProducts(this.value)">
-                            <option value="all">Todas as Opções</option>
-                            <option value="entrada">Entradas</option>
-                            <option value="prato">Pratos</option>
-                            <option value="sobremesa">Sobremesas</option>
-                            <option value="bebida">Bebidas</option>
-                        </select>
-                    </div>
+        <?php if (is_admin()) : ?>
+            <div class="container p-5">
+                <div class="row">
 
-                    <table class="table" id="product-table">
-                        <div class="container album py-3">
-                            <tr>
-                                <th scope="col" colspan="1">Imagem</th>
-                                <th scope="col" colspan="3">Nome</th>
-                                <th scope="col" colspan="2">Operação</th>
-                            </tr>
-                            <?php
-                            $procura = $bd->query("SELECT * FROM entradas");
-                            if (!$procura) {
-                                echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-                            } else {
-                                if ($procura->num_rows == 0) {
-                                    echo "<tr><td>Nenhum registo encontrado!</td></tr>";
-                                } else {
-                                    // $reg = $procura->fetch_object();
-                                    // $img = images($reg->img); 
-                                }
-                            }
-                            ?>
-                            <?php while ($item = $procura->fetch_object()) : ?>
-                                <?php $img = images($item->img); ?>
-                                <tr class="entrada">
-                                    <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
-                                    <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
-                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=entradas"><span class="material-symbols-outlined">edit</span></a></td>
-                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=entradas"><span class="material-symbols-outlined">delete</span></a></td>
-
-                                </tr>
-                            <?php endwhile; ?>
-                            <?php
-                            $procura = $bd->query("SELECT * FROM pratos");
-                            if (!$procura) {
-                                echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-                            } else {
-                                if ($procura->num_rows == 0) {
-                                    echo "<tr><td>Nenhum registo encontrado!</td></tr>";
-                                } else {
-                                    // $reg = $procura->fetch_object();
-                                    // $img = images($reg->img); 
-                                }
-                            }
-                            ?>
-                            <?php while ($item = $procura->fetch_object()) : ?>
-                                <?php $img = images($item->img); ?>
-                                <tr class="prato">
-                                    <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
-                                    <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
-                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=pratos"><span class="material-symbols-outlined">edit</span></a></td>
-                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=pratos"><span class="material-symbols-outlined">delete</span></a></td>
-
-                                </tr>
-                            <?php endwhile; ?>
-                            <?php
-                            $procura = $bd->query("SELECT * FROM sobremesas");
-                            if (!$procura) {
-                                echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-                            } else {
-                                if ($procura->num_rows == 0) {
-                                    echo "<tr><td>Nenhum registo encontrado!</td></tr>";
-                                } else {
-                                    // $reg = $procura->fetch_object();
-                                    // $img = images($reg->img); 
-                                }
-                            }
-                            ?>
-                            <?php while ($item = $procura->fetch_object()) : ?>
-                                <?php $img = images($item->img); ?>
-                                <tr class="sobremesa">
-                                    <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
-                                    <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
-                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=sobremesas"><span class="material-symbols-outlined">edit</span></a></td>
-                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=sobremesas"><span class="material-symbols-outlined">delete</span></a></td>
-
-                                </tr>
-                            <?php endwhile; ?>
-                            <?php
-                            $procura = $bd->query("SELECT * FROM bebidas");
-                            if (!$procura) {
-                                echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-                            } else {
-                                if ($procura->num_rows == 0) {
-                                    echo "<tr><td>Nenhum registo encontrado!</td></tr>";
-                                } else {
-                                    // $reg = $procura->fetch_object();
-                                    // $img = images($reg->img); 
-                                }
-                            }
-                            ?>
-                            <?php while ($item = $procura->fetch_object()) : ?>
-                                <?php $img = images($item->img); ?>
-                                <tr class="bebida">
-                                    <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
-                                    <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
-                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=bebidas"><span class="material-symbols-outlined">edit</span></a></td>
-                                    <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=bebidas"><span class="material-symbols-outlined">delete</span></a></td>
-
-                                </tr>
-                            <?php endwhile; ?>
+                    <div class="justify-content-center align-items-center text-center FuncForm">
+                        <h1>Editar Cardápio</h1>
+                        <div style="text-align: left;">
+                            <button class="FuncForm_submit zoom border border-2 border-danger w-auto" type="button"><a style="text-decoration: none; color:black;" href="../HTML/addproduto.php">Adicionar Produto</a></button>
                         </div>
-                    </table>
+                        <div style="text-align: right;">
+                            <select class="filter-dropdown" onchange="filterProducts(this.value)">
+                                <option value="all">Todas as Opções</option>
+                                <option value="entrada">Entradas</option>
+                                <option value="prato">Pratos</option>
+                                <option value="sobremesa">Sobremesas</option>
+                                <option value="bebida">Bebidas</option>
+                            </select>
+                        </div>
+
+                        <table class="table" id="product-table">
+                            <div class="container album py-3">
+                                <tr>
+                                    <th scope="col" colspan="1">Imagem</th>
+                                    <th scope="col" colspan="3">Nome</th>
+                                    <th scope="col" colspan="2">Operação</th>
+                                </tr>
+                                <?php
+                                $procura = $bd->query("SELECT * FROM entradas");
+                                if (!$procura) {
+                                    echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+                                } else {
+                                    if ($procura->num_rows == 0) {
+                                        echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                                    } else {
+                                        // $reg = $procura->fetch_object();
+                                        // $img = images($reg->img); 
+                                    }
+                                }
+                                ?>
+                                <?php while ($item = $procura->fetch_object()) : ?>
+                                    <?php $img = images($item->img); ?>
+                                    <tr class="entrada">
+                                        <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
+                                        <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
+                                        <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=entradas"><span class="material-symbols-outlined">edit</span></a></td>
+                                        <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=entradas"><span class="material-symbols-outlined">delete</span></a></td>
+
+                                    </tr>
+                                <?php endwhile; ?>
+                                <?php
+                                $procura = $bd->query("SELECT * FROM pratos");
+                                if (!$procura) {
+                                    echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+                                } else {
+                                    if ($procura->num_rows == 0) {
+                                        echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                                    } else {
+                                        // $reg = $procura->fetch_object();
+                                        // $img = images($reg->img); 
+                                    }
+                                }
+                                ?>
+                                <?php while ($item = $procura->fetch_object()) : ?>
+                                    <?php $img = images($item->img); ?>
+                                    <tr class="prato">
+                                        <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
+                                        <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
+                                        <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=pratos"><span class="material-symbols-outlined">edit</span></a></td>
+                                        <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=pratos"><span class="material-symbols-outlined">delete</span></a></td>
+
+                                    </tr>
+                                <?php endwhile; ?>
+                                <?php
+                                $procura = $bd->query("SELECT * FROM sobremesas");
+                                if (!$procura) {
+                                    echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+                                } else {
+                                    if ($procura->num_rows == 0) {
+                                        echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                                    } else {
+                                        // $reg = $procura->fetch_object();
+                                        // $img = images($reg->img); 
+                                    }
+                                }
+                                ?>
+                                <?php while ($item = $procura->fetch_object()) : ?>
+                                    <?php $img = images($item->img); ?>
+                                    <tr class="sobremesa">
+                                        <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
+                                        <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
+                                        <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=sobremesas"><span class="material-symbols-outlined">edit</span></a></td>
+                                        <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=sobremesas"><span class="material-symbols-outlined">delete</span></a></td>
+
+                                    </tr>
+                                <?php endwhile; ?>
+                                <?php
+                                $procura = $bd->query("SELECT * FROM bebidas");
+                                if (!$procura) {
+                                    echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+                                } else {
+                                    if ($procura->num_rows == 0) {
+                                        echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+                                    } else {
+                                        // $reg = $procura->fetch_object();
+                                        // $img = images($reg->img); 
+                                    }
+                                }
+                                ?>
+                                <?php while ($item = $procura->fetch_object()) : ?>
+                                    <?php $img = images($item->img); ?>
+                                    <tr class="bebida">
+                                        <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
+                                        <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
+                                        <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=bebidas"><span class="material-symbols-outlined">edit</span></a></td>
+                                        <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=bebidas"><span class="material-symbols-outlined">delete</span></a></td>
+
+                                    </tr>
+                                <?php endwhile; ?>
+                            </div>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-        <script>
-            function filterProducts(type) {
-                var rows = document.getElementById("product-table").getElementsByTagName("tr");
-                for (var i = 1; i < rows.length; i++) {
-                    var row = rows[i];
-                    if (type === "all" || row.classList.contains(type)) {
-                        row.style.display = "";
-                    } else {
-                        row.style.display = "none";
-                    }
-                }
-            }
-        </script>
-        <footer>
-            <?php
-            include_once "../Navbar-Footer/footer.php";
-            ?>
-        </footer>
-        <!-- JQuery Library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+                <?php else : ?>
+                    <div class="container p-5">
+                        <div class="row IndexBox">
+                            <h4><?php
+                                header('refresh:3;url=index.php');
+                                echo msg_erro('Esta página destina-se apenas a Administradores! A redirecionar-te para a página inicial.');
+                                ?></h4>
+                        </div>
+                    </div>
 
-        <!-- Bootstrap JavaScript Libraries -->
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-        </script>
+                <?php endif; ?>
+                
+            <script src="../JS/EditarCardápioFiltro.js"></script>
+            <footer>
+                <?php
+                include_once "../Navbar-Footer/footer.php";
+                ?>
+            </footer>
+            <!-- JQuery Library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-        </script>
+            <!-- Bootstrap JavaScript Libraries -->
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+            </script>
 
-        <script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+            </script>
 
-        </script>
+            <script>
+
+            </script>
 
 </body>
 

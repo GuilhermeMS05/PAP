@@ -8,6 +8,12 @@ require_once "../Includes/login.php";
 require_once "../Includes/T_Espera_Include.php";
 require_once "../Includes/funcionamento_Include.php";
 require_once "../Includes/pratos.php";
+
+//autoload do composer
+require '../vendor/autoload.php';
+
+//Pegar infos do Google Login
+$info = \App\User::getInfo();
 ?>
 
 <head>
@@ -20,6 +26,7 @@ require_once "../Includes/pratos.php";
 
     <link rel="stylesheet" href="../CSS/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
     <style>
         .info {
@@ -43,7 +50,7 @@ require_once "../Includes/pratos.php";
     <main>
         <div class="container-fluid p-5">
             <nav class="navbar navbar-light mx-auto IndexBox">
-                <div class="row" style="width: 100%;">
+                <div class="row text-center" style="width: 100%; vertical-align: middle;">
                     <div class="col-md-4">
                         <?php
                         if (is_admin()) {
@@ -57,7 +64,7 @@ require_once "../Includes/pratos.php";
                                 echo "<a class='nav-link active m-1' aria-current='page' href='#' onclick='mostrarCard()'> <img src='../Imagens/green.svg' alt='openimg' height='20px'> <br> Aberto</a>";
                                 echo "<div id='darken-bg' class='darken-bg'>";
                                 echo "<div class='card d-none card-caixa' id='card-caixa' id='darken-bg'>";
-                                echo "<div class='card-body'>";
+                                echo "<div class='card-body my-4'>";
                                 echo "<h5 class='card-title'><strong>Horário de Funcionamento</strong></h5>";
                                 echo "<ul class='list-group list-group-flush' >";
                                 echo "<li class='list-group-item'><strong>Segunda-Feira:</strong> $segA - $segF </li>";
@@ -68,7 +75,7 @@ require_once "../Includes/pratos.php";
                                 echo "<li class='list-group-item'><strong>Sábado:</strong> $sabA - $sabF </li>";
                                 echo "<li class='list-group-item'><strong>Domingo:</strong> $domA - $domF </li>";
                                 echo "</ul>";
-                                echo "<button type='button' class='btn btn-secondary' id='fechar-card'>Fechar</button>";
+                                echo "<button type='button' class='btn border border-2 border-danger' id='fechar-card'>Fechar</button>";
                                 echo "</div>";
                                 echo "</div>";
                                 echo "</div>";
@@ -76,7 +83,7 @@ require_once "../Includes/pratos.php";
                                 echo "<a class='nav-link active m-1' id='botao' aria-current='page' href='#' onclick='mostrarCard()'> <img src='../Imagens/red.svg' alt='openimg' height='20px'> <br> Fechado</a>";
                                 echo "<div id='darken-bg' class='darken-bg'>";
                                 echo "<div class='card d-none card-caixa' id='card-caixa' id='darken-bg'>";
-                                echo "<div class='card-body'>";
+                                echo "<div class='card-body my-auto'>";
                                 echo "<h5 class='card-title'><strong>Horário de Funcionamento</strong></h5>";
                                 echo "<ul class='list-group list-group-flush' >";
                                 echo "<li class='list-group-item'><strong>Segunda-Feira:</strong> $segA - $segF </li>";
@@ -87,7 +94,7 @@ require_once "../Includes/pratos.php";
                                 echo "<li class='list-group-item'><strong>Sábado:</strong> $sabA - $sabF </li>";
                                 echo "<li class='list-group-item'><strong>Domingo:</strong> $domA - $domF </li>";
                                 echo "</ul>";
-                                echo "<button type='button' class='btn btn-secondary' id='fechar-card'>Fechar</button>";
+                                echo "<button type='button' class='btn border border-2 border-danger' id='fechar-card'>Fechar</button>";
                                 echo "</div>";
                                 echo "</div>";
                                 echo "</div>";
@@ -103,10 +110,10 @@ require_once "../Includes/pratos.php";
                             echo "<a class='nav-link active' id='botaoTP' aria-current='page' href='#' onclick='mostrarCardTP()'> <img src='../Imagens/tempodeespera.svg' alt='TempoDeEspera' height='20px'> <br> $valor_min-$valor_max min </a>";
                             echo "<div id='darken-bgTP' class='darken-bg'>";
                             echo "<div class='card d-none card-caixa' id='card-caixaTP' id='darken-bgTP'>";
-                            echo "<div class='card-body'>";
+                            echo "<div class='card-body my-auto'>";
                             echo "<h5 class='card-title'><strong>Tempo de Espera</strong></h5>";
-                            echo "<p>O seu pedido pode demorar em media $valor_min à $valor_max minutos para chegar em sua casa.</p>";
-                            echo "<button type='button' class='btn btn-secondary' id='fechar-cardTP'>Fechar</button>";
+                            echo "<p>O seu pedido pode demorar, em média, $valor_min a $valor_max minutos para chegar à sua casa.</p>";
+                            echo "<button type='button' class='btn border border-2 border-danger' id='fechar-cardTP'>Fechar</button>";
                             echo "</div>";
                             echo "</div>";
                             echo "</div>";
@@ -116,8 +123,9 @@ require_once "../Includes/pratos.php";
                     <div class="col-md-4">
                         <?php
                         if (is_admin()) {
-                            echo "<a class='nav-link active m-1' aria-current='page' href='Formas_Pagamento.php'> <img src='../Imagens/payment.svg' alt='FormasPagamento' height='20px'> <br> Formas de Pagamento</a>";
+                            echo "<a class='nav-link active m-1' aria-current='page' href='Formas_Pagamento.php'> <span class='material-symbols-outlined' height='20px'>shopping_cart</span> <br> Carrinho de Compras</a>";
                         } else {
+                            echo "<a class='nav-link active m-1' aria-current='page' href='Formas_Pagamento.php'> <span class='material-symbols-outlined' height='20px'>shopping_cart</span> <br> Carrinho de Compras</a>";
                         }
                         ?>
                     </div>
@@ -169,7 +177,7 @@ require_once "../Includes/pratos.php";
                                                     <p class="desc_prato"> <?php echo $item->descricao ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Adicionar ao Carrinho</button>
+                                                            <a href="../HTML/testes.php?id=<?php echo $item->id ?>&acao=adicionar"><button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button></a>
                                                         </div>
                                                         <small class="text-muted"><?php echo $item->preco ?></small>
                                                     </div>
@@ -206,7 +214,7 @@ require_once "../Includes/pratos.php";
                                                     <p class="desc_prato"> <?php echo $item->descricao ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Adicionar ao Carrinho</button>
+                                                            <button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button>
                                                         </div>
                                                         <small class="text-muted"><?php echo $item->preco ?></small>
                                                     </div>
@@ -242,7 +250,7 @@ require_once "../Includes/pratos.php";
                                                     <p class="desc_prato"> <?php echo $item->descricao ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Adicionar ao Carrinho</button>
+                                                            <button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button>
                                                         </div>
                                                         <small class="text-muted"><?php echo $item->preco ?></small>
                                                     </div>
@@ -277,7 +285,7 @@ require_once "../Includes/pratos.php";
                                                     <p class="card-text" style="height: 75px;"><?php echo $item->nome ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <button type="button" class="btn btn-sm btn-outline-secondary">Adicionar ao Carrinho</button>
+                                                            <button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button>
                                                         </div>
                                                         <small class="text-muted"><?php echo $item->preco ?></small>
                                                     </div>
@@ -295,31 +303,8 @@ require_once "../Includes/pratos.php";
 
 
 
-        <script>
-            function mostrarInformacoes() {
-                var menu = document.getElementById("menu");
-                var informacoes = document.getElementById("informacoes");
-                console.log(informacoes);
-                // Oculta todas as informações
-                var infos = informacoes.getElementsByClassName("info");
-                for (var i = 0; i < infos.length; i++) {
-                    infos[i].style.display = "none";
-                }
-
-                // Exibe a informação selecionada ou todas as informações se "Selecione uma opção" for selecionado
-                var opcaoSelecionada = menu.value;
-                if (opcaoSelecionada === "") {
-                    // Exibe todas as informações
-                    for (var j = 0; j < infos.length; j++) {
-                        infos[j].style.display = "block";
-                    }
-                } else {
-                    var infoSelecionada = document.getElementById(opcaoSelecionada);
-                    infoSelecionada.style.display = "block";
-                }
-            }
-            mostrarInformacoes();
-        </script>
+        <script src="../JS/FiltrarProdutos.js"></script>
+        <script src="../JS/MostrarCard.js"></script>
     </main>
     <footer>
         <?php
@@ -332,38 +317,6 @@ require_once "../Includes/pratos.php";
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-    </script>
-
-    <script>
-        //Card Funcionamento
-        function mostrarCard() {
-            var card = document.getElementById("card-caixa");
-            var botao = document.getElementById("botao");
-            var darkenBg = document.getElementById("darken-bg");
-            card.classList.toggle("d-none");
-            card.classList.toggle("show");
-            darkenBg.classList.toggle("show");
-        }
-        document.getElementById("fechar-card").addEventListener("click", function() {
-            var card = document.getElementById("card-caixa");
-            card.classList.add("d-none");
-            document.getElementById("darken-bg").classList.remove("show");
-        });
-
-        //Card Tempo de Espera
-        function mostrarCardTP() {
-            var card = document.getElementById("card-caixaTP");
-            var botao = document.getElementById("botaoTP");
-            var darkenBg = document.getElementById("darken-bgTP");
-            card.classList.toggle("d-none");
-            card.classList.toggle("show");
-            darkenBg.classList.toggle("show");
-        }
-        document.getElementById("fechar-cardTP").addEventListener("click", function() {
-            var card = document.getElementById("card-caixaTP");
-            card.classList.add("d-none");
-            document.getElementById("darken-bgTP").classList.remove("show");
-        });
     </script>
 
     <?php

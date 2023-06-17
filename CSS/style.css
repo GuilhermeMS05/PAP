@@ -3,6 +3,32 @@ body{
     background-color: #FF5F5F;
 }
 
+a {
+    color: black;
+}
+
+a:hover {
+    color: #FF5F5F;
+}
+
+.erro{
+    vertical-align: middle;
+}
+
+.errorIcon{
+    vertical-align: middle;
+    color: red;
+}
+
+.sucesso{
+    vertical-align: middle;
+}
+
+.checkIcon{
+    vertical-align: middle;
+    color: rgb(0, 255, 0);
+}
+
 table.tabelas{
     background-color: white;
     width: 100%;
@@ -67,8 +93,8 @@ table.tabelas td:nth-child(4){
     transform: translate(-50%, -50%);
     z-index: 1000;
     background-color: rgba(255, 255, 255, 1);
-    width: 80%;
-    max-width: 600px;
+    height: auto !important; 
+    width: auto !important;
     padding: 20px;
     border: 2px solid #FF5F5F;
     box-shadow: 0px 0px 10px #FF5F5F;

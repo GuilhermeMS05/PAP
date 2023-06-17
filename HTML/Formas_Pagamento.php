@@ -18,6 +18,7 @@ require_once "../Includes/login.php";
 
     <link rel="stylesheet" href="../CSS/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
 </head>
 <style>
@@ -167,33 +168,46 @@ if ($result->num_rows > 0) {
         ?>
     </header>
     <main>
-        <div class="container p-5">
-            <div class="row">
-                <div class="justify-content-center align-items-center text-center">
-                    <form action="" method="POST" class="FuncForm">
-                        <h3 class="text-center">Formas de Pagamento</h3>
-                        <div class="p-1">
-                            Pagamento X
-                            <label class='switch'> <input type='checkbox' name='opcao1' value="opcao1" <?php if (in_array("opcao1", $opcoesSelecionadas)) echo "checked"; ?>> <span class='slider round'></span>
-                            </label>
-                            <br><br>
-                            Pagamento Y
-                            <label class="switch"> <input type="checkbox" name="opcao2" value="opcao2" <?php if (in_array("opcao2", $opcoesSelecionadas)) echo "checked"; ?>> <span class="slider round"></span>
-                            </label>
-                            <br><br>
-                            Pagamento Z
-                            <label class="switch"> <input type="checkbox" name="opcao3" value="opcao3" <?php if (in_array("opcao3", $opcoesSelecionadas)) echo "checked"; ?>> <span class="slider round"></span>
-                            </label>
-                            <br><br>
-                            <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
-                        </div>
-                    </form>
+        <?php if (is_admin()) : ?>
+            <div class="container p-5">
+                <div class="row">
+                    <div class="justify-content-center align-items-center text-center">
+                        <form action="" method="POST" class="FuncForm">
+                            <h3 class="text-center">Formas de Pagamento</h3>
+                            <div class="p-1">
+                                Pagamento X
+                                <label class='switch'> <input type='checkbox' name='opcao1' value="opcao1" <?php if (in_array("opcao1", $opcoesSelecionadas)) echo "checked"; ?>> <span class='slider round'></span>
+                                </label>
+                                <br><br>
+                                Pagamento Y
+                                <label class="switch"> <input type="checkbox" name="opcao2" value="opcao2" <?php if (in_array("opcao2", $opcoesSelecionadas)) echo "checked"; ?>> <span class="slider round"></span>
+                                </label>
+                                <br><br>
+                                Pagamento Z
+                                <label class="switch"> <input type="checkbox" name="opcao3" value="opcao3" <?php if (in_array("opcao3", $opcoesSelecionadas)) echo "checked"; ?>> <span class="slider round"></span>
+                                </label>
+                                <br><br>
+                                <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php else : ?>
+            <div class="container p-5">
+                <div class="row IndexBox">
+                    <h4><?php
+                        header('refresh:3;url=index.php');
+                        echo msg_erro('Esta página destina-se apenas a Administradores! A redirecionar-te para a página inicial.');
+                        ?></h4>
+                </div>
+            </div>
+        <?php endif; ?>
     </main>
     <footer>
-
+        <?php
+        include_once "../Navbar-Footer/footer.php";
+        ?>
     </footer>
     <!-- JQuery Library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>

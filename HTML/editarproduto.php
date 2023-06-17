@@ -131,6 +131,9 @@ if (isset($_POST['nome']) && isset($_POST['descricao']) && isset($_POST['preco']
     // Inserir o valor na tabela
     $sql = "UPDATE $tabela SET nome='$P_nome', descricao='$P_desc', preco='$P_preco', img='$P_img' WHERE id=$id";
     mysqli_query($bd, $sql);
+    header('location: cardapio.php');
+} else{
+    echo "Erro ao editar o produto";
 }
 ?>
 
@@ -141,54 +144,67 @@ if (isset($_POST['nome']) && isset($_POST['descricao']) && isset($_POST['preco']
         ?>
     </header>
     <main>
-        <div class="container p-5">
-            <div class="row">
-                <div class="justify-content-center align-items-center text-center FuncForm">
-                    <h2 class="text-center py-1"><?php $item = $procura->fetch_object();
-                                                    echo "Editar $item->nome"; ?></h2>
+        <?php if (is_admin()) : ?>
+            <div class="container p-5">
+                <div class="row">
+                    <div class="justify-content-center align-items-center text-center FuncForm">
+                        <h2 class="text-center py-1"><?php $item = $procura->fetch_object();
+                                                        echo "Editar $item->nome"; ?></h2>
 
-                    <div class="album py-5">
-                        <div class="container">
-                            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-12 g-3 d-flex justify-content-center">
-                                <form action="" method="POST">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Nome do Produto</label>
-                                        <input type="text" name="nome" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo $item->nome ?>">
-                                    </div><br>
-                                    <div class="form-group">
-                                        <label for="exampleFormControlTextarea1">Descrição do Produto</label>
-                                        <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3"><?php echo $item->descricao ?></textarea>
-                                    </div><br>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Preço do Produto</label>
-                                        <input type="text" class="form-control" name="preco" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo $item->preco ?>">
-                                    </div><br>
-                                    <div class="form-group">
-                                        <label for="exampleFormControlFile1">Imagem do Produto</label>
-                                        <div class="file-upload">
-                                            <div class="image-upload-wrap zoom">
-                                                <input class="file-upload-input" name="imagem" type='file' onchange="readURL(this);" accept="image/*" />
-                                                <div class="drag-text">
-                                                    <h3>Adicionar Imagem</h3>
+                        <div class="album py-5">
+                            <div class="container">
+                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-12 g-3 d-flex justify-content-center">
+                                    <form action="" method="POST">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Nome do Produto</label>
+                                            <input type="text" name="nome" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo $item->nome ?>">
+                                        </div><br>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Descrição do Produto</label>
+                                            <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3"><?php echo $item->descricao ?></textarea>
+                                        </div><br>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Preço do Produto</label>
+                                            <input type="text" class="form-control" name="preco" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo $item->preco ?>">
+                                        </div><br>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlFile1">Imagem do Produto</label>
+                                            <div class="file-upload">
+                                                <div class="image-upload-wrap zoom">
+                                                    <input class="file-upload-input" name="imagem" type='file' onchange="readURL(this);" accept="image/*" />
+                                                    <div class="drag-text">
+                                                        <h3>Adicionar Imagem</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="file-upload-content">
+                                                    <img class="file-upload-image" src="../Imagens/<?php $img = images($item->img);
+                                                                                                    echo $item->img ?>" alt="your image" />
+                                                    <div class="image-title-wrap">
+                                                        <button type="button" onclick="removeUpload()" class="FuncForm_submit zoom border border-2 border-danger remove-image">Remover Imagem</button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="file-upload-content">
-                                                <img class="file-upload-image" src="../Imagens/<?php $img = images($item->img);
-                                                                                                echo $item->img ?>" alt="your image" />
-                                                <div class="image-title-wrap">
-                                                    <button type="button" onclick="removeUpload()" class="FuncForm_submit zoom border border-2 border-danger remove-image">Remover Imagem</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><br>
-                                    <button type="submit" class="btn FuncForm_submit zoom border border-2 border-danger">Enviar</button>
-                                </form>
+                                        </div><br>
+                                        <button type="submit" class="btn FuncForm_submit zoom border border-2 border-danger">Enviar</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
+            </div>
+        <?php else : ?>
+            <div class="container p-5">
+                <div class="row IndexBox">
+                    <h4><?php
+                        header('refresh:3;url=index.php');
+                        echo msg_erro('Esta página destina-se apenas a Administradores! A redirecionar-te para a página inicial.');
+                        ?></h4>
+                </div>
+            </div>
+        <?php endif; ?>
     </main>
+    <script src="../JS/AddProdutoImg.js"></script>
     <footer>
         <?php
         include_once "../Navbar-Footer/footer.php";
@@ -202,44 +218,6 @@ if (isset($_POST['nome']) && isset($_POST['descricao']) && isset($_POST['preco']
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-    </script>
-
-    <script>
-        $('.image-upload-wrap').hide();
-        $('.file-upload-content').show();
-
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    $('.image-upload-wrap').hide();
-
-                    $('.file-upload-image').attr('src', e.target.result);
-                    $('.file-upload-content').show();
-
-                    $('.image-title').html(input.files[0].name);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-
-            } else {
-                removeUpload();
-            }
-        }
-
-        function removeUpload() {
-            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-            $('.file-upload-content').hide();
-            $('.image-upload-wrap').show();
-        }
-        $('.image-upload-wrap').bind('dragover', function() {
-            $('.image-upload-wrap').addClass('image-dropping');
-        });
-        $('.image-upload-wrap').bind('dragleave', function() {
-            $('.image-upload-wrap').removeClass('image-dropping');
-        });
     </script>
 
 </body>

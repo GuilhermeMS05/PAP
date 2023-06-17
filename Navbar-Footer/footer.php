@@ -5,53 +5,61 @@
       <!-- Grid row -->
       <div class="row mt-3 me-0">
         <!-- Grid column -->
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+        <div class="col-md-2 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <img src="../Imagens/RestaurantName.svg" alt="" width="40%" style="margin: auto;">
         </div>
         <!-- Grid column -->
 
         <!-- Grid column -->
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            Menu
-          </h6>
-          <p>
-            <a href="../HTML/nike.php" target="_blank" class="text-reset">Entradas</a>
-          </p>
-          <p>
-            <a href="../HTML/adidas.php" target="_blank" class="text-reset">Pratos</a>
-          </p>
-          <p>
-            <a href="../HTML/puma.php" target="_blank" class="text-reset">Sobremesas</a>
-          </p>
-          <p>
-            <a href="../HTML/puma.php" target="_blank" class="text-reset">Bebidas</a>
-          </p>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+        <div class="col-md-5 col-lg-2 col-xl-2 mx-auto mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">
             Links Úteis
           </h6>
-          <p>
-            <a href="#products" class="text-reset">Carrinho</a>
-          </p>
-          <p>
-            <a href="" class="text-reset">Registar</a>
-          </p>
-          <p>
-            <a href='../HTML/user_login.php' class='text-reset'>Entrar</a>
-          </p>
+          <p><a href="#" class="text-reset" onclick='mostrarCard()'>Horários</a></p>
+          <div id="darken-bg" class="darken-bg">
+            <div class="card d-none card-caixa" id="card-caixa" id="darken-bg">
+              <div class="card-body my-4">
+                <h5 class="card-title"><strong>Horário de Funcionamento</strong></h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong>Segunda-Feira:</strong><?php echo "$segA - $segF" ?></li>
+                  <li class="list-group-item"><strong>Terça-Feira:</strong><?php echo "$terA - $terF" ?></li>
+                  <li class="list-group-item"><strong>Quarta-Feira:</strong><?php echo "$quaA - $quaF" ?></li>
+                  <li class="list-group-item"><strong>Quinta-Feira:</strong><?php echo "$quiA - $quiF" ?></li>
+                  <li class="list-group-item"><strong>Sexta-Feira:</strong><?php echo "$sexA - $sexF" ?></li>
+                  <li class="list-group-item"><strong>Sábado:</strong><?php echo "$sabA - $sabF" ?></li>
+                  <li class="list-group-item"><strong>Domingo:</strong><?php echo "$domA - $domF" ?></li>
+                </ul>
+                <button type="button" class="btn border border-2 border-danger" id="fechar-card">Fechar</button>
+              </div>
+            </div>
+          </div>
+
+          <p><a href="#" class="text-reset" id="botaoTP" onclick='mostrarCardTP()'>Tempo de Espera</a></p>
+          <div id="darken-bgTP" class="darken-bg">
+            <div class="card d-none card-caixa" id="card-caixaTP" id="darken-bgTP">
+              <div class="card-body my-auto">
+                <h5 class="card-title"><strong>Tempo de Espera</strong></h5>
+                <?php echo "<p>O seu pedido pode demorar, em média, $valor_min a $valor_max minutos para chegar à sua casa.</p>"; ?>
+                <button type="button" class="btn border border-2 border-danger" id="fechar-cardTP">Fechar</button>
+              </div>
+            </div>
+          </div>
+          <?php if ($_SESSION['user'] == "") : ?>
+            <p>
+              <a href="../Login/user_login.php" class="text-reset">Entrar</a>
+            </p>
+          <?php else : ?>
+            <p>
+              <a href="../Login/user_logout.php" class="text-reset">Sair</a>
+            </p>
+          <?php endif; ?>
         </div>
         <!-- Grid column -->
 
         <!-- Grid column -->
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+        <div class="col-md-5 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">
             Contato

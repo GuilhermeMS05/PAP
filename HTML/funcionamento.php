@@ -19,6 +19,7 @@ date_default_timezone_set('Europe/Lisbon');
 
   <link rel="stylesheet" href="../CSS/style.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
 </head>
 
@@ -29,273 +30,280 @@ date_default_timezone_set('Europe/Lisbon');
     ?>
   </header>
   <main>
-  <?php if (is_admin()) : ?>
-    <!-- Segunda-Feira -->
-    <?php
-    if (isset($_POST['segundaA']) && isset($_POST['segundaF'])) {
-      // Obter o valor enviado pelo usuário
-      $segA = $_POST['segundaA'];
-      $segF = $_POST['segundaF'];
+    <?php if (is_admin()) : ?>
+      <!-- Segunda-Feira -->
+      <?php
+      if (isset($_POST['segundaA']) && isset($_POST['segundaF'])) {
+        // Obter o valor enviado pelo usuário
+        $segA = $_POST['segundaA'];
+        $segF = $_POST['segundaF'];
 
-      // Inserir o valor na tabela
-      $sql = "UPDATE funcionamento SET abertura='$segA', fechamento='$segF' WHERE id=1";
-      mysqli_query($bd, $sql);
-    }
+        // Inserir o valor na tabela
+        $sql = "UPDATE funcionamento SET abertura='$segA', fechamento='$segF' WHERE id=1";
+        mysqli_query($bd, $sql);
+      }
 
-    // Obter o último valor inserido na tabela
-    $sql = "SELECT abertura, fechamento FROM funcionamento WHERE id=1";
-    $result = mysqli_query($bd, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $abertura = $row['abertura'];
-    $fechamento = $row['fechamento'];
-    ?>
-    <div class="container p-5">
-      <div class="row">
-        <div class="col">
-          <form action="" method="POST" class="FuncForm">
-            <div class="p-1">
-              Segunda-Feira:<br>
-              <div style="text-align: center;">
-                <input type="time" name="segundaA" value="<?php echo $abertura ?>" required>
-                &nbspAté&nbsp
-                <input type="time" name="segundaF" value="<?php echo $fechamento ?>" required><br><br>
-                <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+      // Obter o último valor inserido na tabela
+      $sql = "SELECT abertura, fechamento FROM funcionamento WHERE id=1";
+      $result = mysqli_query($bd, $sql);
+      $row = mysqli_fetch_assoc($result);
+      $abertura = $row['abertura'];
+      $fechamento = $row['fechamento'];
+      ?>
+      <div class="container p-5">
+        <div class="row">
+          <div class="col">
+            <form action="" method="POST" class="FuncForm">
+              <div class="p-1">
+                Segunda-Feira:<br>
+                <div style="text-align: center;">
+                  <input type="time" name="segundaA" value="<?php echo $abertura ?>" required>
+                  &nbspAté&nbsp
+                  <input type="time" name="segundaF" value="<?php echo $fechamento ?>" required><br><br>
+                  <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Terça-Feira -->
-    <?php
-    if (isset($_POST['tercaA']) && isset($_POST['tercaF'])) {
-      // Obter o valor enviado pelo usuário
-      $terA = $_POST['tercaA'];
-      $terF = $_POST['tercaF'];
+      <!-- Terça-Feira -->
+      <?php
+      if (isset($_POST['tercaA']) && isset($_POST['tercaF'])) {
+        // Obter o valor enviado pelo usuário
+        $terA = $_POST['tercaA'];
+        $terF = $_POST['tercaF'];
 
-      // Inserir o valor na tabela
-      $sql = "UPDATE funcionamento SET abertura='$terA', fechamento='$terF' WHERE id=2";
-      mysqli_query($bd, $sql);
-    }
+        // Inserir o valor na tabela
+        $sql = "UPDATE funcionamento SET abertura='$terA', fechamento='$terF' WHERE id=2";
+        mysqli_query($bd, $sql);
+      }
 
-    // Obter o último valor inserido na tabela
-    $sql = "SELECT abertura, fechamento FROM funcionamento WHERE id=2";
-    $result = mysqli_query($bd, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $abertura = $row['abertura'];
-    $fechamento = $row['fechamento'];
-    ?>
-    <div class="container p-5">
-      <div class="row">
-        <div class="col">
-          <form action="" method="POST" class="FuncForm">
-            <div class="p-1">
-              Terça-Feira:<br>
-              <div style="text-align: center;">
-                <input type="time" name="tercaA" value="<?php echo $abertura ?>" required>
-                &nbspAté&nbsp
-                <input type="time" name="tercaF" value="<?php echo $fechamento ?>" required><br><br>
-                <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+      // Obter o último valor inserido na tabela
+      $sql = "SELECT abertura, fechamento FROM funcionamento WHERE id=2";
+      $result = mysqli_query($bd, $sql);
+      $row = mysqli_fetch_assoc($result);
+      $abertura = $row['abertura'];
+      $fechamento = $row['fechamento'];
+      ?>
+      <div class="container p-5">
+        <div class="row">
+          <div class="col">
+            <form action="" method="POST" class="FuncForm">
+              <div class="p-1">
+                Terça-Feira:<br>
+                <div style="text-align: center;">
+                  <input type="time" name="tercaA" value="<?php echo $abertura ?>" required>
+                  &nbspAté&nbsp
+                  <input type="time" name="tercaF" value="<?php echo $fechamento ?>" required><br><br>
+                  <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Quarta-Feira -->
-    <?php
-    if (isset($_POST['quartaA']) && isset($_POST['quartaF'])) {
-      // Obter o valor enviado pelo usuário
-      $quaA = $_POST['quartaA'];
-      $quaF = $_POST['quartaF'];
+      <!-- Quarta-Feira -->
+      <?php
+      if (isset($_POST['quartaA']) && isset($_POST['quartaF'])) {
+        // Obter o valor enviado pelo usuário
+        $quaA = $_POST['quartaA'];
+        $quaF = $_POST['quartaF'];
 
-      // Inserir o valor na tabela
-      $sql = "UPDATE funcionamento SET abertura='$quaA', fechamento='$quaF' WHERE id=3";
-      mysqli_query($bd, $sql);
-    }
+        // Inserir o valor na tabela
+        $sql = "UPDATE funcionamento SET abertura='$quaA', fechamento='$quaF' WHERE id=3";
+        mysqli_query($bd, $sql);
+      }
 
-    // Obter o último valor inserido na tabela
-    $sql = "SELECT abertura, fechamento FROM funcionamento WHERE id=3";
-    $result = mysqli_query($bd, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $abertura = $row['abertura'];
-    $fechamento = $row['fechamento'];
-    ?>
-    <div class="container p-5">
-      <div class="row">
-        <div class="col">
-          <form action="" method="POST" class="FuncForm">
-            <div class="p-1">
-              Quarta-Feira:<br>
-              <div style="text-align: center;">
-                <input type="time" name="quartaA" value="<?php echo $abertura ?>" required>
-                &nbspAté&nbsp
-                <input type="time" name="quartaF" value="<?php echo $fechamento ?>" required><br><br>
-                <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+      // Obter o último valor inserido na tabela
+      $sql = "SELECT abertura, fechamento FROM funcionamento WHERE id=3";
+      $result = mysqli_query($bd, $sql);
+      $row = mysqli_fetch_assoc($result);
+      $abertura = $row['abertura'];
+      $fechamento = $row['fechamento'];
+      ?>
+      <div class="container p-5">
+        <div class="row">
+          <div class="col">
+            <form action="" method="POST" class="FuncForm">
+              <div class="p-1">
+                Quarta-Feira:<br>
+                <div style="text-align: center;">
+                  <input type="time" name="quartaA" value="<?php echo $abertura ?>" required>
+                  &nbspAté&nbsp
+                  <input type="time" name="quartaF" value="<?php echo $fechamento ?>" required><br><br>
+                  <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Quinta-Feira -->
-    <?php
-    if (isset($_POST['quintaA']) && isset($_POST['quintaF'])) {
-      // Obter o valor enviado pelo usuário
-      $quiA = $_POST['quintaA'];
-      $quiF = $_POST['quintaF'];
+      <!-- Quinta-Feira -->
+      <?php
+      if (isset($_POST['quintaA']) && isset($_POST['quintaF'])) {
+        // Obter o valor enviado pelo usuário
+        $quiA = $_POST['quintaA'];
+        $quiF = $_POST['quintaF'];
 
-      // Inserir o valor na tabela
-      $sql = "UPDATE funcionamento SET abertura='$quiA', fechamento='$quiF' WHERE id=4";
-      mysqli_query($bd, $sql);
-    }
+        // Inserir o valor na tabela
+        $sql = "UPDATE funcionamento SET abertura='$quiA', fechamento='$quiF' WHERE id=4";
+        mysqli_query($bd, $sql);
+      }
 
-    // Obter o último valor inserido na tabela
-    $sql = "SELECT abertura, fechamento FROM funcionamento WHERE id=4";
-    $result = mysqli_query($bd, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $abertura = $row['abertura'];
-    $fechamento = $row['fechamento'];
-    ?>
-    <div class="container p-5">
-      <div class="row">
-        <div class="col">
-          <form action="" method="POST" class="FuncForm">
-            <div class="p-1">
-              Quinta-Feira:<br>
-              <div style="text-align: center;">
-                <input type="time" name="quintaA" value="<?php echo $abertura ?>" required>
-                &nbspAté&nbsp
-                <input type="time" name="quintaF" value="<?php echo $fechamento ?>" required><br><br>
-                <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+      // Obter o último valor inserido na tabela
+      $sql = "SELECT abertura, fechamento FROM funcionamento WHERE id=4";
+      $result = mysqli_query($bd, $sql);
+      $row = mysqli_fetch_assoc($result);
+      $abertura = $row['abertura'];
+      $fechamento = $row['fechamento'];
+      ?>
+      <div class="container p-5">
+        <div class="row">
+          <div class="col">
+            <form action="" method="POST" class="FuncForm">
+              <div class="p-1">
+                Quinta-Feira:<br>
+                <div style="text-align: center;">
+                  <input type="time" name="quintaA" value="<?php echo $abertura ?>" required>
+                  &nbspAté&nbsp
+                  <input type="time" name="quintaF" value="<?php echo $fechamento ?>" required><br><br>
+                  <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Sexta-Feira -->
-    <?php
-    if (isset($_POST['sextaA']) && isset($_POST['sextaF'])) {
-      // Obter o valor enviado pelo usuário
-      $sexA = $_POST['sextaA'];
-      $sexF = $_POST['sextaF'];
+      <!-- Sexta-Feira -->
+      <?php
+      if (isset($_POST['sextaA']) && isset($_POST['sextaF'])) {
+        // Obter o valor enviado pelo usuário
+        $sexA = $_POST['sextaA'];
+        $sexF = $_POST['sextaF'];
 
-      // Inserir o valor na tabela
-      $sql = "UPDATE funcionamento SET abertura='$sexA', fechamento='$sexF' WHERE id=5";
-      mysqli_query($bd, $sql);
-    }
+        // Inserir o valor na tabela
+        $sql = "UPDATE funcionamento SET abertura='$sexA', fechamento='$sexF' WHERE id=5";
+        mysqli_query($bd, $sql);
+      }
 
-    // Obter o último valor inserido na tabela
-    $sql = "SELECT abertura, fechamento FROM funcionamento WHERE id=5";
-    $result = mysqli_query($bd, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $abertura = $row['abertura'];
-    $fechamento = $row['fechamento'];
-    ?>
-    <div class="container p-5">
-      <div class="row">
-        <div class="col">
-          <form action="" method="POST" class="FuncForm">
-            <div class="p-1">
-              Sexta-Feira:<br>
-              <div style="text-align: center;">
-                <input type="time" name="sextaA" value="<?php echo $abertura ?>" required>
-                &nbspAté&nbsp
-                <input type="time" name="sextaF" value="<?php echo $fechamento ?>" required><br><br>
-                <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+      // Obter o último valor inserido na tabela
+      $sql = "SELECT abertura, fechamento FROM funcionamento WHERE id=5";
+      $result = mysqli_query($bd, $sql);
+      $row = mysqli_fetch_assoc($result);
+      $abertura = $row['abertura'];
+      $fechamento = $row['fechamento'];
+      ?>
+      <div class="container p-5">
+        <div class="row">
+          <div class="col">
+            <form action="" method="POST" class="FuncForm">
+              <div class="p-1">
+                Sexta-Feira:<br>
+                <div style="text-align: center;">
+                  <input type="time" name="sextaA" value="<?php echo $abertura ?>" required>
+                  &nbspAté&nbsp
+                  <input type="time" name="sextaF" value="<?php echo $fechamento ?>" required><br><br>
+                  <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Sábado -->
-    <?php
-    if (isset($_POST['sabadoA']) && isset($_POST['sabadoF'])) {
-      // Obter o valor enviado pelo usuário
-      $sabA = $_POST['sabadoA'];
-      $sabF = $_POST['sabadoF'];
+      <!-- Sábado -->
+      <?php
+      if (isset($_POST['sabadoA']) && isset($_POST['sabadoF'])) {
+        // Obter o valor enviado pelo usuário
+        $sabA = $_POST['sabadoA'];
+        $sabF = $_POST['sabadoF'];
 
-      // Inserir o valor na tabela
-      $sql = "UPDATE funcionamento SET abertura='$sabA', fechamento='$sabF' WHERE id=6";
-      mysqli_query($bd, $sql);
-    }
+        // Inserir o valor na tabela
+        $sql = "UPDATE funcionamento SET abertura='$sabA', fechamento='$sabF' WHERE id=6";
+        mysqli_query($bd, $sql);
+      }
 
-    // Obter o último valor inserido na tabela
-    $sql = "SELECT abertura, fechamento FROM funcionamento WHERE id=6";
-    $result = mysqli_query($bd, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $abertura = $row['abertura'];
-    $fechamento = $row['fechamento'];
-    ?>
-    <div class="container p-5">
-      <div class="row">
-        <div class="col">
-          <form action="" method="POST" class="FuncForm">
-            <div class="p-1">
-              Sábado:<br>
-              <div style="text-align: center;">
-                <input type="time" name="sabadoA" value="<?php echo $abertura ?>" required>
-                &nbspAté&nbsp
-                <input type="time" name="sabadoF" value="<?php echo $fechamento ?>" required><br><br>
-                <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+      // Obter o último valor inserido na tabela
+      $sql = "SELECT abertura, fechamento FROM funcionamento WHERE id=6";
+      $result = mysqli_query($bd, $sql);
+      $row = mysqli_fetch_assoc($result);
+      $abertura = $row['abertura'];
+      $fechamento = $row['fechamento'];
+      ?>
+      <div class="container p-5">
+        <div class="row">
+          <div class="col">
+            <form action="" method="POST" class="FuncForm">
+              <div class="p-1">
+                Sábado:<br>
+                <div style="text-align: center;">
+                  <input type="time" name="sabadoA" value="<?php echo $abertura ?>" required>
+                  &nbspAté&nbsp
+                  <input type="time" name="sabadoF" value="<?php echo $fechamento ?>" required><br><br>
+                  <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Domingo -->
-    <?php
-    if (isset($_POST['domingoA']) && isset($_POST['domingoF'])) {
-      // Obter o valor enviado pelo usuário
-      $domA = $_POST['domingoA'];
-      $domF = $_POST['domingoF'];
+      <!-- Domingo -->
+      <?php
+      if (isset($_POST['domingoA']) && isset($_POST['domingoF'])) {
+        // Obter o valor enviado pelo usuário
+        $domA = $_POST['domingoA'];
+        $domF = $_POST['domingoF'];
 
-      // Inserir o valor na tabela
-      $sql = "UPDATE funcionamento SET abertura='$domA', fechamento='$domF' WHERE id=7";
-      mysqli_query($bd, $sql);
-    }
+        // Inserir o valor na tabela
+        $sql = "UPDATE funcionamento SET abertura='$domA', fechamento='$domF' WHERE id=7";
+        mysqli_query($bd, $sql);
+      }
 
-    // Obter o último valor inserido na tabela
-    $sql = "SELECT abertura, fechamento FROM funcionamento WHERE id=7";
-    $result = mysqli_query($bd, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $abertura = $row['abertura'];
-    $fechamento = $row['fechamento'];
-    ?>
-    <div class="container p-5">
-      <div class="row">
-        <div class="col">
-          <form action="" method="POST" class="FuncForm">
-            <div class="p-1">
-              Domingo:<br>
-              <div style="text-align: center;">
-                <input type="time" name="domingoA" value="<?php echo $abertura ?>" required>
-                &nbspAté&nbsp
-                <input type="time" name="domingoF" value="<?php echo $fechamento ?>" required><br><br>
-                <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+      // Obter o último valor inserido na tabela
+      $sql = "SELECT abertura, fechamento FROM funcionamento WHERE id=7";
+      $result = mysqli_query($bd, $sql);
+      $row = mysqli_fetch_assoc($result);
+      $abertura = $row['abertura'];
+      $fechamento = $row['fechamento'];
+      ?>
+      <div class="container p-5">
+        <div class="row">
+          <div class="col">
+            <form action="" method="POST" class="FuncForm">
+              <div class="p-1">
+                Domingo:<br>
+                <div style="text-align: center;">
+                  <input type="time" name="domingoA" value="<?php echo $abertura ?>" required>
+                  &nbspAté&nbsp
+                  <input type="time" name="domingoF" value="<?php echo $fechamento ?>" required><br><br>
+                  <input class="FuncForm_submit zoom border border-2 border-danger" type="submit" value="Guardar" name="submit">
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-    <?php else :
-    header('refresh:3;url=index.php');
-    echo msg_erro('Essa página é apenas para Administradores! Redirecionando para a página inicial.');
-    ?>
+    <?php else : ?>
+      <div class="container p-5">
+        <div class="row IndexBox">
+          <h4><?php
+              header('refresh:3;url=index.php');
+              echo msg_erro('Esta página destina-se apenas a Administradores! A redirecionar-te para a página inicial.');
+              ?></h4>
+        </div>
+      </div>
     <?php endif; ?>
   </main>
   <footer>
-    <!-- place footer here -->
+    <?php
+    include_once "../Navbar-Footer/footer.php";
+    ?>
   </footer>
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">

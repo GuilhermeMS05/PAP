@@ -9,12 +9,12 @@
     }
 
     function msg_sucesso($m){
-        $resp = "<div class='sucesso'><span class='material-icons'>check</span>$m</div>";
+        $resp = "<div class='sucesso'><span class='material-icons checkIcon'>check</span><br> $m</div>";
         return $resp;
     }
 
     function msg_erro($m){
-        $resp = "<div class='erro'><span class='material-icons'>cancel</span>$m</div>";
+        $resp = "<div class='erro'><span class='material-symbols-outlined errorIcon'>error</span><br> $m</div>";
         return $resp;
     }
 ?>  

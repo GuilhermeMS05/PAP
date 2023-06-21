@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-light text-muted">
+<footer class="text-center text-lg-start bg-light text-muted mt-auto">
   <section class="p-2">
     <div class="text-center text-md-start mt-4">
       <!-- Grid row -->
@@ -7,7 +7,7 @@
         <!-- Grid column -->
         <div class="col-md-2 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
-          <img src="../Imagens/RestaurantName.svg" alt="" width="40%" style="margin: auto;">
+          <img src="../Imagens/RestaurantLogoRed.svg" alt="" width="40%" style="margin: auto;">
         </div>
         <!-- Grid column -->
 
@@ -17,10 +17,13 @@
           <h6 class="text-uppercase fw-bold mb-4">
             Links Úteis
           </h6>
+          <?php if(is_admin()) : ?>
+            <p><a href="../HTML/funcionamento.php" class="text-reset">Horários</a></p>
+          <?php else : ?> 
           <p><a href="#" class="text-reset" onclick='mostrarCard()'>Horários</a></p>
           <div id="darken-bg" class="darken-bg">
             <div class="card d-none card-caixa" id="card-caixa" id="darken-bg">
-              <div class="card-body my-4">
+              <div class="card-body my-4 text-center">
                 <h5 class="card-title"><strong>Horário de Funcionamento</strong></h5>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item"><strong>Segunda-Feira:</strong><?php echo "$segA - $segF" ?></li>
@@ -35,17 +38,22 @@
               </div>
             </div>
           </div>
+          <?php endif; ?>
 
+          <?php if(is_admin()) : ?>
+            <p><a href="../HTML/T_Espera.php" class="text-reset" id="botaoTP">Tempo de Espera</a></p>
+          <?php else : ?>
           <p><a href="#" class="text-reset" id="botaoTP" onclick='mostrarCardTP()'>Tempo de Espera</a></p>
           <div id="darken-bgTP" class="darken-bg">
             <div class="card d-none card-caixa" id="card-caixaTP" id="darken-bgTP">
-              <div class="card-body my-auto">
+              <div class="card-body my-auto text-center">
                 <h5 class="card-title"><strong>Tempo de Espera</strong></h5>
                 <?php echo "<p>O seu pedido pode demorar, em média, $valor_min a $valor_max minutos para chegar à sua casa.</p>"; ?>
                 <button type="button" class="btn border border-2 border-danger" id="fechar-cardTP">Fechar</button>
               </div>
             </div>
           </div>
+          <?php endif; ?>
           <?php if ($_SESSION['user'] == "") : ?>
             <p>
               <a href="../Login/user_login.php" class="text-reset">Entrar</a>

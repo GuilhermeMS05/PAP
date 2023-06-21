@@ -15,7 +15,7 @@ require_once "../Includes/login.php";
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
+    <link rel="icon" type="image/png" href="../Imagens/RestaurantLogoRed.svg"/>
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -107,29 +107,29 @@ require_once "../Includes/login.php";
 </style>
 
 <?php
-$id = $_GET['id'];
-$tabela = $_GET['cat'];
-$procura = $bd->query("SELECT * FROM $tabela WHERE id=$id");
-if (!$procura) {
-    echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+
+if (!empty($_POST['nif'])) {
+    $nif = $_POST['nif'];
 } else {
-    if ($procura->num_rows == 0) {
-        echo "<tr><td>Nenhum registo encontrado!</td></tr>";
-    } else {
-        // $reg = $procura->fetch_object();
-        // $img = images($reg->img); 
-    }
+    $nif = 1;
 }
 
-if (isset($_POST['deletar'])) {
-    // Deletar o valor na tabela
-    $sql = "DELETE FROM $tabela WHERE id = '$id'";
-
-    if ($bd->query($sql) === TRUE) {
-        header('location: cardapio.php');
-    } else {
-        echo "Erro ao deletar produto: ";
+if (isset($_POST['morada']) && isset($_POST['contacto']) && isset($_POST['observacao'])) {
+    // Obter o valor enviado pelo usuário
+    $user = $_SESSION['nome'];
+    $morada = $_POST['morada'];
+    $contacto = $_POST['contacto'];
+    $observacao = $_POST['observacao'];
+    
+    if($user != '0' && $morada != '0' && $contacto != '0' && $observacao != '0'){
+        $sql = "INSERT INTO pedidos (nome_utilizador, morada, contacto, nif, observacoes) VALUES ('$user', '$morada', '$contacto', '$nif', '$observacao')";
+        mysqli_query($bd, $sql);
+        header('location: pedidoSucesso.php');
+    } else{
+        echo "Você inseriu algum valor errado, insira novamente!"; 
     }
+} else{
+    
 }
 ?>
 
@@ -140,19 +140,32 @@ if (isset($_POST['deletar'])) {
         ?>
     </header>
     <main>
-        <?php if (is_admin()) : ?>
+        <?php if (is_logado()) : ?>
             <div class="container p-5">
                 <div class="row">
                     <div class="justify-content-center align-items-center text-center FuncForm">
-                        <h2 class="text-center py-1"><?php $item = $procura->fetch_object();
-                                                        echo "Remover $item->nome"; ?></h2>
-
+                        <h2 class="text-center py-1">Insira seus dados</h2>
                         <div class="album py-5">
                             <div class="container">
                                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-12 g-3 d-flex justify-content-center">
                                     <form action="" method="POST">
-                                        <h5>Tem certeza que deseja remover <?php echo $item->nome ?> do cardápio?</h5><br>
-                                        <input type="submit" name="deletar" class="btn FuncForm_submit zoom border border-2 border-danger" id="exampleInputEmail1" aria-describedby="emailHelp" value="Deletar"><br>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Morada</label>
+                                            <input type="text" name="morada" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ex: Rua Paulo VI, 30 - Leiria" value="" required>
+                                        </div><br>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Número de Contacto</label>
+                                            <input type="text" name="contacto" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ex: 912 537 724" value="" required>
+                                        </div><br>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">NIF (opcional)</label>
+                                            <input type="text" name="nif" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ex: 547324976" MAXLENGTH=9 value="">
+                                        </div><br>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Observações (opcional)</label>
+                                            <textarea class="form-control" name="observacao" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        </div><br>
+                                        <button type="submit" class="btn FuncForm_submit zoom border border-2 border-danger">Finalizar Pedido</button>
                                     </form>
                                 </div>
                             </div>
@@ -162,16 +175,17 @@ if (isset($_POST['deletar'])) {
                 </div>
             </div>
         <?php else : ?>
-            <div class="container p-5">
+            <div class="container">
                 <div class="row IndexBox">
                     <h4><?php
-                        header('refresh:3;url=index.php');
-                        echo msg_erro('Esta página destina-se apenas a Administradores! A redirecionar-te para a página inicial.');
+                        header('location: ../Login/user_login.php')
                         ?></h4>
                 </div>
             </div>
+
         <?php endif; ?>
     </main>
+    <script src="../JS/AddProdutoImg.js"></script>
     <footer>
         <?php
         include_once "../Navbar-Footer/footer.php";
@@ -186,7 +200,6 @@ if (isset($_POST['deletar'])) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
-
 </body>
 
 </html>

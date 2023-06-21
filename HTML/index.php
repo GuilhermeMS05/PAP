@@ -12,6 +12,12 @@ require_once "../Includes/pratos.php";
 //autoload do composer
 require '../vendor/autoload.php';
 
+if($_SESSION['nome'] == ""){
+    $user = 0;
+} else{
+    $user = $_SESSION['nome'];
+}
+
 //Pegar infos do Google Login
 $info = \App\User::getInfo();
 ?>
@@ -25,6 +31,7 @@ $info = \App\User::getInfo();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="icon" type="image/png" href="../Imagens/RestaurantLogoRed.svg"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
@@ -51,7 +58,7 @@ $info = \App\User::getInfo();
         <div class="container-fluid p-5">
             <nav class="navbar navbar-light mx-auto IndexBox">
                 <div class="row text-center" style="width: 100%; vertical-align: middle;">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <?php
                         if (is_admin()) {
                             if ($abertura <= $hora_atual && $hora_atual <= $fechamento) {
@@ -102,12 +109,12 @@ $info = \App\User::getInfo();
                         }
                         ?>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <?php
                         if (is_admin()) {
-                            echo "<a class='nav-link active' aria-current='page' href='T_espera.php'> <img src='../Imagens/tempodeespera.svg' alt='TempoDeEspera' height='20px'> <br> $valor_min-$valor_max min </a>";
+                            echo "<a class='nav-link active m-1' style='vertical-align: middle;' aria-current='page' href='T_espera.php'> <img src='../Imagens/tempodeespera.svg' alt='TempoDeEspera' height='20px'> <br> $valor_min-$valor_max min </a>";
                         } else {
-                            echo "<a class='nav-link active' id='botaoTP' aria-current='page' href='#' onclick='mostrarCardTP()'> <img src='../Imagens/tempodeespera.svg' alt='TempoDeEspera' height='20px'> <br> $valor_min-$valor_max min </a>";
+                            echo "<a class='nav-link active m-1' id='botaoTP' aria-current='page' href='#' onclick='mostrarCardTP()'> <img src='../Imagens/tempodeespera.svg' style='vertical-align: middle;' alt='TempoDeEspera' height='20px'> <br> $valor_min-$valor_max min </a>";
                             echo "<div id='darken-bgTP' class='darken-bg'>";
                             echo "<div class='card d-none card-caixa' id='card-caixaTP' id='darken-bgTP'>";
                             echo "<div class='card-body my-auto'>";
@@ -117,15 +124,6 @@ $info = \App\User::getInfo();
                             echo "</div>";
                             echo "</div>";
                             echo "</div>";
-                        }
-                        ?>
-                    </div>
-                    <div class="col-md-4">
-                        <?php
-                        if (is_admin()) {
-                            echo "<a class='nav-link active m-1' aria-current='page' href='Formas_Pagamento.php'> <span class='material-symbols-outlined' height='20px'>shopping_cart</span> <br> Carrinho de Compras</a>";
-                        } else {
-                            echo "<a class='nav-link active m-1' aria-current='page' href='Formas_Pagamento.php'> <span class='material-symbols-outlined' height='20px'>shopping_cart</span> <br> Carrinho de Compras</a>";
                         }
                         ?>
                     </div>
@@ -167,8 +165,8 @@ $info = \App\User::getInfo();
                                     ?>
 
                                     <?php while ($item = $procura->fetch_object()) : ?>
-                                        <?php $img = images($item->img); ?>
-
+                                        <?php $img = images($item->img);
+                                        ?>
                                         <div class="col">
                                             <div class="card shadow-sm">
                                                 <img src="<?php echo $img ?>" class="img-fluid cardImg">
@@ -177,9 +175,9 @@ $info = \App\User::getInfo();
                                                     <p class="desc_prato"> <?php echo $item->descricao ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <a href="../HTML/testes.php?id=<?php echo $item->id ?>&acao=adicionar"><button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button></a>
+                                                            <a href="../HTML/carrinho.php?user=<?php echo $user ?>&produto=<?php echo $item->nome ?>&price=<?php echo $item->preco ?>&img=<?php echo $img ?>"><button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button></a>
                                                         </div>
-                                                        <small class="text-muted"><?php echo $item->preco ?></small>
+                                                        <small class="text-muted"><?php echo number_format($item->preco, 2, ',', '.') ?> €</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -204,8 +202,8 @@ $info = \App\User::getInfo();
                                     ?>
 
                                     <?php while ($item = $procura->fetch_object()) : ?>
-                                        <?php $img = images($item->img); ?>
-
+                                        <?php $img = images($item->img)
+                                        ?>
                                         <div class="col">
                                             <div class="card shadow-sm">
                                                 <img src="<?php echo $img ?>" class="img-fluid cardImg">
@@ -214,9 +212,9 @@ $info = \App\User::getInfo();
                                                     <p class="desc_prato"> <?php echo $item->descricao ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button>
+                                                            <a href="../HTML/carrinho.php?user=<?php echo $user ?>&produto=<?php echo $item->nome ?>&price=<?php echo $item->preco ?>&img=<?php echo $img ?>"><button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button></a>
                                                         </div>
-                                                        <small class="text-muted"><?php echo $item->preco ?></small>
+                                                        <small class="text-muted"><?php echo number_format($item->preco, 2, ',', '.') ?> €</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -241,7 +239,8 @@ $info = \App\User::getInfo();
                                     ?>
 
                                     <?php while ($item = $procura->fetch_object()) : ?>
-                                        <?php $img = images($item->img); ?>
+                                        <?php $img = images($item->img);
+                                        ?>
                                         <div class="col">
                                             <div class="card shadow-sm">
                                                 <img src="<?php echo $img ?>" class="img-fluid cardImg">
@@ -250,9 +249,9 @@ $info = \App\User::getInfo();
                                                     <p class="desc_prato"> <?php echo $item->descricao ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button>
+                                                            <a href="../HTML/carrinho.php?user=<?php echo $user ?>&produto=<?php echo $item->nome ?>&price=<?php echo $item->preco ?>&img=<?php echo $img ?>"><button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button></a>
                                                         </div>
-                                                        <small class="text-muted"><?php echo $item->preco ?></small>
+                                                        <small class="text-muted"><?php echo number_format($item->preco, 2, ',', '.') ?> €</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -277,7 +276,8 @@ $info = \App\User::getInfo();
                                     ?>
 
                                     <?php while ($item = $procura->fetch_object()) : ?>
-                                        <?php $img = images($item->img); ?>
+                                        <?php $img = images($item->img);
+                                        ?>
                                         <div class="col">
                                             <div class="card shadow-sm">
                                                 <img src="<?php echo $img ?>" class="img-fluid cardImg">
@@ -285,9 +285,9 @@ $info = \App\User::getInfo();
                                                     <p class="card-text" style="height: 75px;"><?php echo $item->nome ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button>
+                                                            <a href="../HTML/carrinho.php?user=<?php echo $user ?>&produto=<?php echo $item->nome ?>&price=<?php echo $item->preco ?>&img=<?php echo $img ?>"><button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button></a>
                                                         </div>
-                                                        <small class="text-muted"><?php echo $item->preco ?></small>
+                                                        <small class="text-muted"><?php echo number_format($item->preco, 2, ',', '.') ?> €</small>
                                                     </div>
                                                 </div>
                                             </div>

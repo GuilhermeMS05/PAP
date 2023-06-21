@@ -17,6 +17,7 @@ require_once "../Includes/login.php";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="icon" type="image/png" href="../Imagens/RestaurantLogoRed.svg"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
@@ -118,6 +119,7 @@ if (isset($_POST['categoria']) && isset($_POST['nome']) && isset($_POST['descric
     // Inserir o valor na tabela
     $sql = "INSERT INTO $P_cat (nome, descricao, preco, img) VALUES ('$P_nome', '$P_desc', '$P_preco', '$P_img')";
     mysqli_query($bd, $sql);
+    header('location: cardapio.php');
 }
 ?>
 

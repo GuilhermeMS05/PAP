@@ -108,8 +108,8 @@ require_once "../Includes/login.php";
 
 <?php
 $id = $_GET['id'];
-$tabela = $_GET['cat'];
-$procura = $bd->query("SELECT * FROM $tabela WHERE id=$id");
+$user = $_GET['user'];
+$procura = $bd->query("SELECT * FROM carrinho WHERE id=$id");
 if (!$procura) {
     echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
 } else {
@@ -123,10 +123,11 @@ if (!$procura) {
 
 if (isset($_POST['deletar'])) {
     // Deletar o valor na tabela
-    $sql = "DELETE FROM $tabela WHERE id = '$id'";
+    $sql = "DELETE FROM carrinho WHERE id = '$id'";
 
     if ($bd->query($sql) === TRUE) {
-        header('location: cardapio.php');
+        $url = "carrinho.php?user=0&produto=0&price=0&img=0";
+        header('location: ' . $url);
     } else {
         echo "Erro ao deletar produto: ";
     }
@@ -140,18 +141,18 @@ if (isset($_POST['deletar'])) {
         ?>
     </header>
     <main>
-        <?php if (is_admin()) : ?>
+        <?php if (is_logado()) : ?>
             <div class="container p-5">
                 <div class="row">
                     <div class="justify-content-center align-items-center text-center FuncForm">
                         <h2 class="text-center py-1"><?php $item = $procura->fetch_object();
-                                                        echo "Remover $item->nome"; ?></h2>
+                                                        echo "Remover $item->produto"; ?></h2>
 
                         <div class="album py-5">
                             <div class="container">
                                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-12 g-3 d-flex justify-content-center">
                                     <form action="" method="POST">
-                                        <h5>Tem certeza que deseja remover <?php echo $item->nome ?> do cardápio?</h5><br>
+                                        <h5>Tem certeza que deseja remover <?php echo $item->produto ?> do carrinho?</h5><br>
                                         <input type="submit" name="deletar" class="btn FuncForm_submit zoom border border-2 border-danger" id="exampleInputEmail1" aria-describedby="emailHelp" value="Deletar"><br>
                                     </form>
                                 </div>
@@ -165,8 +166,7 @@ if (isset($_POST['deletar'])) {
             <div class="container p-5">
                 <div class="row IndexBox">
                     <h4><?php
-                        header('refresh:3;url=index.php');
-                        echo msg_erro('Esta página destina-se apenas a Administradores! A redirecionar-te para a página inicial.');
+                        header('location: ../Login/user_login.php')
                         ?></h4>
                 </div>
             </div>

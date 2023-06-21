@@ -170,7 +170,7 @@ require_once "../Includes/login.php";
                                         <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
                                         <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
                                         <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=entradas"><span class="material-symbols-outlined">edit</span></a></td>
-                                        <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=entradas"><span class="material-symbols-outlined">delete</span></a></td>
+                                        <td style="vertical-align: middle;"><a href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=entradas"><span class="material-symbols-outlined">delete</span></a></td>
 
                                     </tr>
                                 <?php endwhile; ?>
@@ -193,7 +193,7 @@ require_once "../Includes/login.php";
                                         <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
                                         <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
                                         <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=pratos"><span class="material-symbols-outlined">edit</span></a></td>
-                                        <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=pratos"><span class="material-symbols-outlined">delete</span></a></td>
+                                        <td style="vertical-align: middle;"><a href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=pratos"><span class="material-symbols-outlined">delete</span></a></td>
 
                                     </tr>
                                 <?php endwhile; ?>
@@ -216,7 +216,7 @@ require_once "../Includes/login.php";
                                         <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
                                         <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
                                         <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=sobremesas"><span class="material-symbols-outlined">edit</span></a></td>
-                                        <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=sobremesas"><span class="material-symbols-outlined">delete</span></a></td>
+                                        <td style="vertical-align: middle;"><a href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=sobremesas"><span class="material-symbols-outlined">delete</span></a></td>
 
                                     </tr>
                                 <?php endwhile; ?>
@@ -239,7 +239,7 @@ require_once "../Includes/login.php";
                                         <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
                                         <td colspan="3" style="vertical-align: middle;"><?php echo $item->nome ?></td>
                                         <td style="vertical-align: middle;"><a target="_blank" href="../HTML/editarproduto.php?id=<?php echo $item->id ?>&cat=bebidas"><span class="material-symbols-outlined">edit</span></a></td>
-                                        <td style="vertical-align: middle;"><a target="_blank" href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=bebidas"><span class="material-symbols-outlined">delete</span></a></td>
+                                        <td style="vertical-align: middle;"><a href="../HTML/deleteproduto.php?id=<?php echo $item->id ?>&cat=bebidas"><span class="material-symbols-outlined">delete</span></a></td>
 
                                     </tr>
                                 <?php endwhile; ?>

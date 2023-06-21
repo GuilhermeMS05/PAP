@@ -8,7 +8,7 @@ require_once "../Includes/login.php";
 ?>
 
 <head>
-    <title>Carrinho</title>
+    <title>Editar Cardápio</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,6 +16,7 @@ require_once "../Includes/login.php";
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="icon" type="image/png" href="../Imagens/RestaurantLogoRed.svg"/>
+
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
@@ -115,73 +116,53 @@ require_once "../Includes/login.php";
 </style>
 
 <?php
-$user = $_SESSION['nome'];
-$produto = $_GET['produto'];
-$price = $_GET['price'];
-$imagem = $_GET['img'];
-
-if($user != '0' && $produto != '0' && $price != '0' && $imagem != '0'){
-    $sql = "INSERT INTO carrinho (nome_utilizador, produto, price, img) VALUES ('$user', '$produto', '$price', '$imagem')";
-    mysqli_query($bd, $sql);
-} else{
-}
 
 ?>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
         <?php
         include_once "../Navbar-Footer/navbar.php";
         ?>
     </header>
-    <main>
-        <?php if (is_logado()) : ?>
+    <main class="flex-grow-1">
+        <?php if (is_admin()) : ?>
             <div class="container p-5">
                 <div class="row">
-                    <?php
-                    $procura = $bd->query("SELECT * FROM carrinho WHERE nome_utilizador = ('$user')");
-                    if (!$procura) {
-                        echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-                    } else {
-                        if ($procura->num_rows == 0) {
-                            echo "<tr><td>Nenhum registo encontrado!dssd</td></tr>";
-                        } else {
-                            // $reg = $procura->fetch_object();
-                            // $img = images($reg->img); 
-                        }
-                    }
-                    ?>
+
                     <div class="justify-content-center align-items-center text-center FuncForm">
-                        <h1>Carrinho</h1>
+                        <h1>Pedidos</h1>
+
                         <table class="table" id="product-table">
                             <div class="container album py-3">
+                                <?php
+                                $pedido = $bd->query("SELECT * FROM pedidos");
+                                if (!$pedido) {
+                                    echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+                                } else {
+                                    if ($pedido->num_rows == 0) {
+                                        
+                                    } else {
+                                        // $reg = $procura->fetch_object();
+                                        // $img = images($reg->img); 
+                                    }
+                                }
+                                ?>
                                 <tr>
-                                    <th scope="col" colspan="1">Imagem</th>
-                                    <th scope="col" colspan="2">Nome</th>
-                                    <th scope="col" colspan="1">Preço</th>
-                                    <th scope="col" colspan="2">Operação</th>
+                                    <th scope="col" colspan="1">#</th>
+                                    <th scope="col" colspan="2">Cliente</th>
+                                    <th scope="col" colspan="1">Ver Pedido</th>
                                 </tr>
-                                <?php $valorTotal = 0;
-                                while ($item = $procura->fetch_object()) : ?>
-                                    <?php $img = images($item->img);
-                                    $valorTotal += $item->price;
-                                    ?>
+                                <?php while ($item = $pedido->fetch_object()) : ?>
                                     <tr>
-                                        <th scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
-                                        <td colspan="2" style="vertical-align: middle;"><?php echo $item->produto ?></td>
-                                        <td colspan="1" style="vertical-align: middle;"><?php echo number_format($item->price, 2, ',', '.') ?> €</td>
-                                        <td colspan="1" style="vertical-align: middle;"><a href="../HTML/addcarrinho.php?user=<?php echo $user ?>&produto=<?php echo $item->produto ?>&price=<?php echo $item->price ?>&img=<?php echo $img ?>"><span class="material-symbols-outlined">add</span></a></td>
-                                        <td colspan="1" style="vertical-align: middle;"><a href="../HTML/carrinho_apagar.php?id=<?php echo $item->id ?>&user=<?php echo $user ?>"><span class="material-symbols-outlined">delete</span></a></td>
+                                        <th colspan="1" style="vertical-align: middle;" scope="row">Pedido #<?php echo $item->id ?></th>
+                                        <td colspan="2" style="vertical-align: middle;"><?php echo $item->nome_utilizador ?></td>
+                                        <td colspan="1" style="vertical-align: middle;"><a href="../HTML/pedidos.php?id=<?php echo $item->id ?>"><button type="button" class="btn border border-2 border-danger">Ver Pedido</button></a></td>
 
                                     </tr>
                                 <?php endwhile; ?>
-                                <tr>
-                                    <th style="text-align: right;" scope="col" colspan="6">Valor Total: <?php echo number_format($valorTotal, 2, ',', '.') ?> €</th>
-                                </tr>
                             </div>
                         </table>
-                        <button class="btn border border-2 border-danger m-2" type="button"><a style="text-decoration: none;" href="../HTML/index.php">Continuar a comprar</a></button>
-                        <button class="btn border border-2 border-danger m-2" type="button"><a style="text-decoration: none; text-align: start;" href="../HTML/fazerPedido.php?user=<?php echo $user ?>">Fazer pedido</a></button>
                     </div>
                 </div>
             </div>
@@ -189,7 +170,8 @@ if($user != '0' && $produto != '0' && $price != '0' && $imagem != '0'){
             <div class="container p-5">
                 <div class="row IndexBox">
                     <h4><?php
-                        header('location: ../Login/user_login.php');
+                        header('refresh:3;url=index.php');
+                        echo msg_erro('Esta página destina-se apenas a Administradores! A redirecionar-te para a página inicial.');
                         ?></h4>
                 </div>
             </div>

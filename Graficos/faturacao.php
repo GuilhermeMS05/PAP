@@ -8,7 +8,7 @@ require_once "../Includes/login.php";
 ?>
 
 <head>
-    <title>Editar Cardápio</title>
+    <title>Faturação por dia</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -107,30 +107,7 @@ require_once "../Includes/login.php";
 </style>
 
 <?php
-$id = $_GET['id'];
-$tabela = $_GET['cat'];
-$procura = $bd->query("SELECT * FROM $tabela WHERE id=$id");
-if (!$procura) {
-    echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-} else {
-    if ($procura->num_rows == 0) {
-        echo "<tr><td>Nenhum registo encontrado!</td></tr>";
-    } else {
-        // $reg = $procura->fetch_object();
-        // $img = images($reg->img); 
-    }
-}
 
-if (isset($_POST['deletar'])) {
-    // Deletar o valor na tabela
-    $sql = "DELETE FROM $tabela WHERE id = '$id'";
-
-    if ($bd->query($sql) === TRUE) {
-        header('location: cardapio.php');
-    } else {
-        echo "Erro ao deletar produto: ";
-    }
-}
 ?>
 
 <body>
@@ -140,38 +117,8 @@ if (isset($_POST['deletar'])) {
         ?>
     </header>
     <main>
-        <?php if (is_admin()) : ?>
-            <div class="container p-5">
-                <div class="row">
-                    <div class="justify-content-center align-items-center text-center FuncForm">
-                        <h2 class="text-center py-1"><?php $item = $procura->fetch_object();
-                                                        echo "Remover $item->nome"; ?></h2>
-
-                        <div class="album py-5">
-                            <div class="container">
-                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-12 g-3 d-flex justify-content-center">
-                                    <form action="" method="POST">
-                                        <h5>Tem certeza que deseja remover <?php echo $item->nome ?> do cardápio?</h5><br>
-                                        <input type="submit" name="deletar" class="btn FuncForm_submit zoom border border-2 border-danger" id="exampleInputEmail1" aria-describedby="emailHelp" value="Deletar"><br>
-                                    </form>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <?php else : ?>
-            <div class="container p-5">
-                <div class="row IndexBox">
-                    <h4><?php
-                        header('refresh:3;url=index.php');
-                        echo msg_erro('Esta página destina-se apenas a Administradores! A redirecionar-te para a página inicial.');
-                        ?></h4>
-                </div>
-            </div>
-        <?php endif; ?>
     </main>
+    <script src="../JS/AddProdutoImg.js"></script>
     <footer>
         <?php
         include_once "../Navbar-Footer/footer.php";

@@ -46,13 +46,13 @@ $valor_min = $row['t_min'];
 $valor_max = $row['t_max'];
 ?>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
   <header>
     <?php
     include_once "../Navbar-Footer/navbar.php";
     ?>
   </header>
-  <main>
+  <main class="flex-grow-1">
     <?php if (is_admin()) : ?>
       <div class="container p-5">
         <div class="row">

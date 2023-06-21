@@ -108,8 +108,7 @@ require_once "../Includes/login.php";
 
 <?php
 $id = $_GET['id'];
-$tabela = $_GET['cat'];
-$procura = $bd->query("SELECT * FROM $tabela WHERE id=$id");
+$procura = $bd->query("SELECT * FROM pedidos WHERE id = '$id'");
 if (!$procura) {
     echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
 } else {
@@ -120,17 +119,26 @@ if (!$procura) {
         // $img = images($reg->img); 
     }
 }
+$item = $procura->fetch_object();
 
-if (isset($_POST['deletar'])) {
-    // Deletar o valor na tabela
-    $sql = "DELETE FROM $tabela WHERE id = '$id'";
+$procura_info = $bd->query("SELECT * FROM pedidos WHERE nome_utilizador = '$item->nome_utilizador'");
 
-    if ($bd->query($sql) === TRUE) {
-        header('location: cardapio.php');
+if ($procura_info && $procura_info->num_rows > 0) {
+    $info_pedido = $procura_info->fetch_object();
+} else {
+    echo "Não foram encontrados resultados para o nome de utilizador: $item->nome_utilizador";
+}
+
+if (isset($_POST['finalizado'])) {
+    $apagar_pedido = $bd->query("DELETE FROM pedidos WHERE id = ('$item->id')");
+    $apagar_carrinho = $bd->query("DELETE FROM carrinho WHERE nome_utilizador = ('$item->nome_utilizador')");
+    if ($apagar_pedido === TRUE && $apagar_carrinho === TRUE) {
+        header('location: telaPedidos.php');
     } else {
-        echo "Erro ao deletar produto: ";
+        echo "Erro ao deletar produto! ";
     }
 }
+
 ?>
 
 <body>
@@ -144,15 +152,52 @@ if (isset($_POST['deletar'])) {
             <div class="container p-5">
                 <div class="row">
                     <div class="justify-content-center align-items-center text-center FuncForm">
-                        <h2 class="text-center py-1"><?php $item = $procura->fetch_object();
-                                                        echo "Remover $item->nome"; ?></h2>
-
+                        <h2 class="text-center py-1">Pedido #<?php echo $item->id  ?></h2>
                         <div class="album py-5">
                             <div class="container">
-                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-12 g-3 d-flex justify-content-center">
+                                <div class="col-md-12">
+                                    <table class="table" id="product-table">
+                                        <?php
+                                        $carrinho = $bd->query("SELECT * FROM carrinho WHERE nome_utilizador = ('$item->nome_utilizador')");
+                                        if ($carrinho && $carrinho->num_rows > 0) {
+                                        } else {
+                                            echo "Não foram encontrados resultados para o nome de utilizador: $item->nome_utilizador";
+                                        }
+                                        ?>
+                                        <tr>
+                                            <th scope="col" colspan="1">Imagem</th>
+                                            <th scope="col" colspan="2">Nome</th>
+                                            <th scope="col" colspan="1">Preço</th>
+                                        </tr>
+                                        <?php $valorTotal = 0;
+                                        while ($produtos = $carrinho->fetch_object()) : ?>
+                                            <?php $img = images($produtos->img);
+                                            $valorTotal += $produtos->price;
+                                            ?>
+                                            <tr>
+                                                <th colspan="1" scope="row"><img src="<?php echo $img ?>" class="img-fluid img"></th>
+                                                <td colspan="2" style="vertical-align: middle;"><?php echo $produtos->produto ?></td>
+                                                <td colspan="1" style="vertical-align: middle;"><?php echo number_format($produtos->price, 2, ',', '.') ?> €</td>
+
+                                            </tr>
+                                        <?php endwhile; ?>
+                                        <tr>
+                                            <th style="text-align: right;" scope="col" colspan="4">Valor Total: <?php echo number_format($valorTotal, 2, ',', '.') ?> €</th>
+                                        </tr>
+                                    </table><br>
+                                    <h4 style="text-align: start;"><b>Dados do Cliente:</b></h4>
+                                    <div class="text-start p-4">
+                                        <h5><b>Nome:</b> <?php echo $item->nome_utilizador ?></h5><br>
+                                        <h5><b>Morada:</b> <?php echo $info_pedido->morada ?></h5><br>
+                                        <h5><b>Contacto:</b> <?php echo $info_pedido->contacto ?></h5><br>
+                                        <?php if($info_pedido->nif == 1){
+                                            $info_pedido->nif = NULL;
+                                        } ?>
+                                        <h5><b>NIF:</b> <?php echo $info_pedido->nif ?></h5><br>
+                                        <h5><b>Observações:</b> <?php echo $info_pedido->observacoes ?></h5><br>
+                                    </div>
                                     <form action="" method="POST">
-                                        <h5>Tem certeza que deseja remover <?php echo $item->nome ?> do cardápio?</h5><br>
-                                        <input type="submit" name="deletar" class="btn FuncForm_submit zoom border border-2 border-danger" id="exampleInputEmail1" aria-describedby="emailHelp" value="Deletar"><br>
+                                        <button type="submit" name="finalizado" class="btn FuncForm_submit zoom border border-2 border-danger">Pedido Finalizado</button>
                                     </form>
                                 </div>
                             </div>
@@ -162,7 +207,7 @@ if (isset($_POST['deletar'])) {
                 </div>
             </div>
         <?php else : ?>
-            <div class="container p-5">
+            <div class="container">
                 <div class="row IndexBox">
                     <h4><?php
                         header('refresh:3;url=index.php');
@@ -170,8 +215,10 @@ if (isset($_POST['deletar'])) {
                         ?></h4>
                 </div>
             </div>
+
         <?php endif; ?>
     </main>
+    <script src="../JS/AddProdutoImg.js"></script>
     <footer>
         <?php
         include_once "../Navbar-Footer/footer.php";
@@ -186,7 +233,6 @@ if (isset($_POST['deletar'])) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
-
 </body>
 
 </html>

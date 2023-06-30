@@ -144,7 +144,7 @@ if($user != '0' && $produto != '0' && $price != '0' && $imagem != '0'){
                         echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
                     } else {
                         if ($procura->num_rows == 0) {
-                            echo "<tr><td>Nenhum registo encontrado!dssd</td></tr>";
+                            
                         } else {
                             // $reg = $procura->fetch_object();
                             // $img = images($reg->img); 
@@ -180,7 +180,7 @@ if($user != '0' && $produto != '0' && $price != '0' && $imagem != '0'){
                                 </tr>
                             </div>
                         </table>
-                        <button class="btn border border-2 border-danger m-2" type="button"><a style="text-decoration: none;" href="../HTML/index.php">Continuar a comprar</a></button>
+                        <button class="btn border border-2 border-danger m-2" type="button"><a style="text-decoration: none;" href="../HTML/index.php#cardapio">Continuar a comprar</a></button>
                         <button class="btn border border-2 border-danger m-2" type="button"><a style="text-decoration: none; text-align: start;" href="../HTML/fazerPedido.php?user=<?php echo $user ?>">Fazer pedido</a></button>
                     </div>
                 </div>

@@ -129,7 +129,49 @@ if ($procura_info && $procura_info->num_rows > 0) {
     echo "Não foram encontrados resultados para o nome de utilizador: $item->nome_utilizador";
 }
 
+$carrinho = $bd->query("SELECT * FROM carrinho");
+if (!$carrinho) {
+    echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+} else {
+    if ($procura->num_rows == 0) {
+        echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+    } else {
+        // $reg = $procura->fetch_object();
+        // $img = images($reg->img); 
+    }
+}
+
+//$pratos = $bd->query("SELECT nome FROM pratos");
+//if (!$pratos) {
+//    echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
+//} else {
+//    if ($procura->num_rows == 0) {
+//        echo "<tr><td>Nenhum registo encontrado!</td></tr>";
+//    } else {
+//        // $reg = $procura->fetch_object();
+//        // $img = images($reg->img); 
+//    }
+//}
+
+$dia_atual = obterDiaAtual();
+$valorTotal = 0;
+$todosPratos = array();
+
+while ($item_carrinho = $carrinho->fetch_object()){
+    $valorTotal += $item_carrinho->price;
+    $todosPratos[] = $item_carrinho->produto;
+}
+
+
 if (isset($_POST['finalizado'])) {
+    $faturacao = ("INSERT INTO faturacao (dia_atual, preco) VALUES ('$dia_atual', '$valorTotal')");
+    mysqli_query($bd, $faturacao);
+
+    foreach ($todosPratos as $prato) {
+        $maisPedidos = "UPDATE maispedidos SET quantidade = quantidade + 1 WHERE pratos = '$prato'";
+        mysqli_query($bd, $maisPedidos);
+    }
+
     $apagar_pedido = $bd->query("DELETE FROM pedidos WHERE id = ('$item->id')");
     $apagar_carrinho = $bd->query("DELETE FROM carrinho WHERE nome_utilizador = ('$item->nome_utilizador')");
     if ($apagar_pedido === TRUE && $apagar_carrinho === TRUE) {

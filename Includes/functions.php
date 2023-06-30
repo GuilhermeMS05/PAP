@@ -17,4 +17,12 @@
         $resp = "<div class='erro'><span class='material-symbols-outlined errorIcon'>error</span><br> $m</div>";
         return $resp;
     }
+
+    function obterDiaAtual() {
+        date_default_timezone_set('Europe/Lisbon');
+
+        $diaAtual = date('Y-m-d');
+      
+        return $diaAtual;
+      }
 ?>  

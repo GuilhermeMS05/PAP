@@ -153,7 +153,7 @@ if (isset($_POST['deletar'])) {
                                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-12 g-3 d-flex justify-content-center">
                                     <form action="" method="POST">
                                         <h5>Tem certeza que deseja remover <?php echo $item->produto ?> do carrinho?</h5><br>
-                                        <input type="submit" name="deletar" class="btn FuncForm_submit zoom border border-2 border-danger" id="exampleInputEmail1" aria-describedby="emailHelp" value="Deletar"><br>
+                                        <input type="submit" name="deletar" class="btn FuncForm_submit zoom border border-2 border-danger" id="exampleInputEmail1" aria-describedby="emailHelp" value="Remover"><br>
                                     </form>
                                 </div>
                             </div>

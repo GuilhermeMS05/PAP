@@ -79,7 +79,7 @@ require_once "../Includes/login.php";
                                 <p class="text-center">Esqueceste a password? <a href="recuperarSenha.php">Recuperar</a></p>
                                 <p class="text-center">Ainda não tens uma conta? <a href="logon_form.php">Criar</a></p>
                                 <hr class="my-4">
-                                <div class="d-grid mb-2 text-center">
+                                <div class="d-grid mb-2 d-flex justify-content-center">
                                     <div id="g_id_onload"
                                     data-client_id="916942570766-od1jgcse9nah7dukaq39c8sl0nek9q3n.apps.googleusercontent.com"
                                     data-context="signin"

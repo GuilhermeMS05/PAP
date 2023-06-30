@@ -133,7 +133,7 @@ if (isset($_POST['nome']) && isset($_POST['descricao']) && isset($_POST['preco']
     mysqli_query($bd, $sql);
     header('location: cardapio.php');
 } else{
-    echo "Erro ao editar o produto";
+    
 }
 ?>
 

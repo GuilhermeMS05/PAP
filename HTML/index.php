@@ -136,7 +136,7 @@ $info = \App\User::getInfo();
         <div class="container-fluid p-5">
             <div class="row mx-auto IndexBox">
                 <div class="Pratos mx-auto">
-                    <h2 class="text-center py-1">Cardápio</h2>
+                    <h2 class="text-center py-1" id="cardapio">Cardápio</h2>
                     <div style="text-align: right;">
                         <select id="menu" onchange="mostrarInformacoes()">
                             <option value="">Filtrar</option>
@@ -175,7 +175,11 @@ $info = \App\User::getInfo();
                                                     <p class="desc_prato"> <?php echo $item->descricao ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <a href="../HTML/carrinho.php?user=<?php echo $user ?>&produto=<?php echo $item->nome ?>&price=<?php echo $item->preco ?>&img=<?php echo $img ?>"><button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button></a>
+                                                            <?php if(is_logado()) : ?>
+                                                                <a href="../HTML/carrinho.php?user=<?php echo $user ?>&produto=<?php echo $item->nome ?>&price=<?php echo $item->preco ?>&img=<?php echo $img ?>"><button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button></a>
+                                                            <?php else : ?>
+                                                                <a href="../Login/user_login.php"><button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button></a>
+                                                            <?php endif ?>
                                                         </div>
                                                         <small class="text-muted"><?php echo number_format($item->preco, 2, ',', '.') ?> €</small>
                                                     </div>

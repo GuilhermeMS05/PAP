@@ -90,7 +90,7 @@ require_once "../Includes/login.php";
                                 <p class="text-center">Já tens uma conta? <a href="login_form.php">Entrar</a></p>
                                 <p align="center">Ou entre com o Google</p>
                                 <hr class="my-4">
-                                <div class="d-grid mb-2">
+                                <div class="d-grid mb-2 d-flex justify-content-center">
                                     <div id="g_id_onload" 
                                     data-client_id="916942570766-od1jgcse9nah7dukaq39c8sl0nek9q3n.apps.googleusercontent.com"
                                     data-context="signin"

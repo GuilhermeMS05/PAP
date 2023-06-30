@@ -134,13 +134,13 @@ if (isset($_POST['categoria']) && isset($_POST['nome']) && isset($_POST['descric
             <div class="container p-5">
                 <div class="row">
                     <div class="justify-content-center align-items-center text-center FuncForm">
-                        <h2 class="text-center py-1">Adicionar Produto</h2>
+                        <h2 class="text-center py-1">Adicionar Item</h2>
                         <div class="album py-5">
                             <div class="container">
                                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-12 g-3 d-flex justify-content-center">
                                     <form action="" method="POST">
                                         <div class="form-group">
-                                            <label for="categoria">Categoria do Produto:</label><br>
+                                            <label for="categoria">Categoria:</label><br>
                                             <select id="categoria" name="categoria">
                                                 <option value="entradas">entradas</option>
                                                 <option value="pratos">pratos</option>
@@ -149,19 +149,19 @@ if (isset($_POST['categoria']) && isset($_POST['nome']) && isset($_POST['descric
                                             </select>
                                         </div><br>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Nome do Produto</label>
+                                            <label for="exampleInputEmail1">Nome</label>
                                             <input type="text" name="nome" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="">
                                         </div><br>
                                         <div class="form-group">
-                                            <label for="exampleFormControlTextarea1">Descrição do Produto</label>
+                                            <label for="exampleFormControlTextarea1">Descrição</label>
                                             <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
                                         </div><br>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Preço do Produto</label>
+                                            <label for="exampleInputEmail1">Preço</label>
                                             <input type="text" class="form-control" name="preco" id="exampleInputEmail1" aria-describedby="emailHelp" value="">
                                         </div><br>
                                         <div class="form-group">
-                                            <label for="exampleFormControlFile1">Imagem do Produto</label>
+                                            <label for="exampleFormControlFile1">Imagem</label>
                                             <div class="file-upload">
                                                 <div class="image-upload-wrap zoom">
                                                     <input class="file-upload-input" name="imagem" type='file' onchange="readURL(this);" accept="image/*" />

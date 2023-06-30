@@ -125,11 +125,6 @@ require_once "../Includes/login.php";
                         <h2 class="text-center py-1">Faturação por dia</h2>
                         <div class="album py-5">
                             <div class="container">
-                                <label for="start-date">Data Inicial:</label>
-                                <input type="date" id="start-date">
-                                <label for="end-date">Data Final:</label>
-                                <input type="date" id="end-date">
-                                <button class="btn border border-2 border-danger" onclick="generateChart()">Gerar Gráfico</button>
                                 <div class="chart-container">
                                     <canvas id="chart"></canvas>
                                 </div>
@@ -151,75 +146,47 @@ require_once "../Includes/login.php";
 
         <?php endif; ?>
     </main>
-    <script src="../JS/phptojs.js"></script>
     <script>
-        function generateChart() {
-            var startDate = document.getElementById('start-date').value;
-            var endDate = document.getElementById('end-date').value;
+        $.ajax({
+            url: '../Includes/maisPedidos-api.php',
+            method: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                var pratos = [];
+                var quantidadePedidos = [];
 
-            // Fazer requisição AJAX para obter os dados da base de dados
-            $.ajax({
-                url: '../Includes/faturacao-api.php',
-                method: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    var dataMap = {};
+                // Extrair os dados da resposta e preencher os arrays correspondentes
+                for (var i = 0; i < response.length; i++) {
+                    pratos.push(response[i].pratos);
+                    quantidadePedidos.push(response[i].quantidade);
+                }
 
-                    // Agrupar os valores por dia e calcular a soma correspondente
-                    for (var i = 0; i < response.length; i++) {
-                        var diaAtual = response[i].dia_atual;
-                        var preco = parseFloat(response[i].preco);
-
-                        if (isDateInRange(diaAtual, startDate, endDate)) {
-                            if (dataMap[diaAtual]) {
-                                dataMap[diaAtual] += preco;
-                            } else {
-                                dataMap[diaAtual] = preco;
+                var ctx = document.getElementById('chart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: pratos,
+                        datasets: [{
+                            label: 'Quantidade de Pedidos',
+                            data: quantidadePedidos,
+                            backgroundColor: '#FF5F5F',
+                            borderColor: '#FF5F5F',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
                             }
                         }
                     }
-
-                    var labels = Object.keys(dataMap);
-                    var data = Object.values(dataMap);
-
-                    var ctx = document.getElementById('chart').getContext('2d');
-                    var chart = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Faturamento diário',
-                                data: data,
-                                borderColor: '#FF5F5F',
-                                backgroundColor: '#FF5F5F',
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-                },
-                error: function(xhr, status, error) {
-                    console.log('Erro na requisição AJAX:', error);
-                }
-            });
-        }
-
-        function isDateInRange(date, startDate, endDate) {
-            var currentDate = new Date(date);
-            var start = new Date(startDate);
-            var end = new Date(endDate);
-
-            start.setHours(0, 0, 0, 0);
-            end.setHours(23, 59, 59, 999);
-
-            return currentDate >= start && currentDate <= end;
-        }
+                });
+            },
+            error: function(xhr, status, error) {
+                console.log('Erro na requisição AJAX:', error);
+            }
+        });
     </script>
     <script src="../JS/AddProdutoImg.js"></script>
     <footer>

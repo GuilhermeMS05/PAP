@@ -12,14 +12,13 @@
         echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
         echo "<li><a class='dropdown-item' href='../HTML/funcionamento.php'>Horário de Funcionamento</a></li>";
         echo "<li><a class='dropdown-item' href='../HTML/T_Espera.php'>Tempo de Espera</a></li>";
-        echo "<li><a class='dropdown-item' href='../HTML/Formas_Pagamento.php'>Formas de Pagamento</a></li>";
         echo "<li><a class='dropdown-item' href='../HTML/cardapio.php'>Editar Cardápio</a></li>";
         echo "</ul></li>";
         echo "<li class='navbar'> <a class='nav-link active' aria-current='page' href='../HTML/telaPedidos.php'>Pedidos</a></li>";
         echo "<li class='navbar dropdown'> <a class='nav-link dropdown-toggle active' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-current='page' href='#'>Relatórios</a>";
         echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
         echo "<li><a class='dropdown-item' href='../Graficos/faturacao.php'>Faturação por dia</a></li>";
-        echo "<li><a class='dropdown-item' href='../HTML/funcionamento.php'>Pratos mais solicitados</a></li>";
+        echo "<li><a class='dropdown-item' href='../Graficos/maisPedidos.php'>Pratos mais Pedidos</a></li>";
         echo "</ul></li>";
       }
       echo "<li class='navbar'>";

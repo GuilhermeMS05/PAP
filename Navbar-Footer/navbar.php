@@ -8,7 +8,7 @@
       echo "</li>";
     } else {
       if (is_admin()) {
-        echo "<li class='navbar dropdown'> <a class='nav-link dropdown-toggle active' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-current='page' aria-expanded='false' href='#'>Registros</a>";
+        echo "<li class='navbar dropdown'> <a class='nav-link dropdown-toggle active' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-current='page' aria-expanded='false' href='#'>Registos</a>";
         echo "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
         echo "<li><a class='dropdown-item' href='../HTML/funcionamento.php'>Horário de Funcionamento</a></li>";
         echo "<li><a class='dropdown-item' href='../HTML/T_Espera.php'>Tempo de Espera</a></li>";

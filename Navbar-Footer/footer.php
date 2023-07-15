@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-light text-muted mt-auto">
+<footer class="text-center text-lg-start bg-light text-muted mt-auto fixar">
   <section class="p-2">
     <div class="text-center text-md-start mt-4">
       <!-- Grid row -->

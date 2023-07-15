@@ -8,7 +8,7 @@ require_once "../Includes/login.php";
 ?>
 
 <head>
-    <title>Faturação por dia</title>
+    <title>Pratos mais Pedidos</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,6 +18,7 @@ require_once "../Includes/login.php";
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="icon" type="image/png" href="../Imagens/RestaurantLogoRed.svg"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
@@ -122,7 +123,7 @@ require_once "../Includes/login.php";
             <div class="container p-5">
                 <div class="row">
                     <div class="justify-content-center align-items-center text-center FuncForm">
-                        <h2 class="text-center py-1">Faturação por dia</h2>
+                        <h2 class="text-center py-1">Pratos mais Pedidos</h2>
                         <div class="album py-5">
                             <div class="container">
                                 <div class="chart-container">
@@ -138,7 +139,7 @@ require_once "../Includes/login.php";
             <div class="container">
                 <div class="row IndexBox">
                     <h4><?php
-                        header('refresh:5;url=index.php');
+                        header('refresh:4;url=index.php');
                         echo msg_erro('Esta página destina-se apenas a Administradores! A redirecionar-te para a página inicial.');
                         ?></h4>
                 </div>

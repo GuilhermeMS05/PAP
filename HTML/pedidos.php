@@ -8,7 +8,7 @@ require_once "../Includes/login.php";
 ?>
 
 <head>
-    <title>Editar Cardápio</title>
+    <title>Pedidos</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,6 +17,7 @@ require_once "../Includes/login.php";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="icon" type="image/png" href="../Imagens/RestaurantLogoRed.svg"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
@@ -104,6 +105,7 @@ require_once "../Includes/login.php";
         border: 0;
         transition: all .2s ease;
     }
+
 </style>
 
 <?php
@@ -141,23 +143,11 @@ if (!$carrinho) {
     }
 }
 
-//$pratos = $bd->query("SELECT nome FROM pratos");
-//if (!$pratos) {
-//    echo "<tr><td>Infelizmente a procura deu erro</td></tr>;";
-//} else {
-//    if ($procura->num_rows == 0) {
-//        echo "<tr><td>Nenhum registo encontrado!</td></tr>";
-//    } else {
-//        // $reg = $procura->fetch_object();
-//        // $img = images($reg->img); 
-//    }
-//}
-
 $dia_atual = obterDiaAtual();
 $valorTotal = 0;
 $todosPratos = array();
 
-while ($item_carrinho = $carrinho->fetch_object()){
+while ($item_carrinho = $carrinho->fetch_object()) {
     $valorTotal += $item_carrinho->price;
     $todosPratos[] = $item_carrinho->produto;
 }
@@ -232,7 +222,7 @@ if (isset($_POST['finalizado'])) {
                                         <h5><b>Nome:</b> <?php echo $item->nome_utilizador ?></h5><br>
                                         <h5><b>Morada:</b> <?php echo $info_pedido->morada ?></h5><br>
                                         <h5><b>Contacto:</b> <?php echo $info_pedido->contacto ?></h5><br>
-                                        <?php if($info_pedido->nif == 1){
+                                        <?php if ($info_pedido->nif == 1) {
                                             $info_pedido->nif = NULL;
                                         } ?>
                                         <h5><b>NIF:</b> <?php echo $info_pedido->nif ?></h5><br>
@@ -252,7 +242,7 @@ if (isset($_POST['finalizado'])) {
             <div class="container">
                 <div class="row IndexBox">
                     <h4><?php
-                        header('refresh:3;url=index.php');
+                        header('refresh:4;url=index.php');
                         echo msg_erro('Esta página destina-se apenas a Administradores! A redirecionar-te para a página inicial.');
                         ?></h4>
                 </div>

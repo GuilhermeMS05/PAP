@@ -12,9 +12,9 @@ require_once "../Includes/pratos.php";
 //autoload do composer
 require '../vendor/autoload.php';
 
-if($_SESSION['nome'] == ""){
+if ($_SESSION['nome'] == "") {
     $user = 0;
-} else{
+} else {
     $user = $_SESSION['nome'];
 }
 
@@ -23,7 +23,7 @@ $info = \App\User::getInfo();
 ?>
 
 <head>
-    <title>Restaurant Name</title>
+    <title>FoodManage</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,7 +31,7 @@ $info = \App\User::getInfo();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../CSS/style.css">
-    <link rel="icon" type="image/png" href="../Imagens/RestaurantLogoRed.svg"/>
+    <link rel="icon" type="image/png" href="../Imagens/RestaurantLogoRed.svg" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
@@ -175,7 +175,7 @@ $info = \App\User::getInfo();
                                                     <p class="desc_prato"> <?php echo $item->descricao ?></p>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="btn-group">
-                                                            <?php if(is_logado()) : ?>
+                                                            <?php if (is_logado()) : ?>
                                                                 <a href="../HTML/carrinho.php?user=<?php echo $user ?>&produto=<?php echo $item->nome ?>&price=<?php echo $item->preco ?>&img=<?php echo $img ?>"><button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button></a>
                                                             <?php else : ?>
                                                                 <a href="../Login/user_login.php"><button type="button" class="btn border border-2 border-danger">Adicionar ao Carrinho</button></a>

@@ -1,1 +1,0 @@
-Verificar cada página (permissões de acesso, ícone e títulos, responsividade);

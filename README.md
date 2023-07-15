@@ -14,8 +14,8 @@ To complete my vocational high school education in computer science, I carried o
 ## Some Images
 Options for the administrator to add, remove, or edit products.
 
-![Edit Menu](../PAP/Imagens/EditarCardapio.png)
+![Edit Menu](https://github.com/GuilhermeMS05/PAP/blob/main/Imagens/EditarCardapio.png)
 
 Graph representing the turnover of the restaurant over a period of time.
 
-![Graph](../PAP/Imagens/graficoFaturacao.png)
+![Graph](https://github.com/GuilhermeMS05/PAP/blob/main/Imagens/graficoFaturacao.png)

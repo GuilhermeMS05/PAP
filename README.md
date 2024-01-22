@@ -6,6 +6,7 @@ To complete my vocational high school education in computer science, I carried o
 ## Technologies Used
 
 - HTML and CSS
+    - Bootstrap 
 - JavaScript
     - ChartJs 
 - MySql
